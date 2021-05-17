@@ -1,0 +1,13 @@
+#footer-about {
+    height: 10px;
+    display: flex;
+    justify-content: center;    
+    color: white;
+
+}
+
+p{
+    color: white;
+    text-align: center;
+}
+
