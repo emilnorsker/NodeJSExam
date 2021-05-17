@@ -1,13 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    
     <link rel="stylesheet" href="/home/home.css">
-    <title>Frontpage</title>
+    <script src="home/home.js"></script>
 
 </head>
 
@@ -15,20 +11,92 @@
 
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
-            <h3 style="font-weight: bold;">Hello, My name is Rasmus Wedelheim.</h3>
-            <h4>
-            <br>
-            I'm a 25 year old Computer Science Student at Københavns Ehrvervs Akademi with a passion for digitalisation and optimisation of ordinary day-to-day tasks. 
-            <br><br>
-            My big passion is Fullstack web developing and software design.
-            <br><br>
-            You can check out my projects on the <a href="/projects">Projects</a> page.
-            <br><br>
-            Feel free to contact me at businessnoneofyour65@gmail.com through the <a href="/contact">Contact</a> page. 
-            </h5>
-            
-            <br><br><br><br><br>
+            <h3 style="font-weight: bold; text-align: center;">Welcome to our Project Sharing Webpage</h3>
+            <p>We wanted to create a page where everyone could share their solutions to a specefic problem.
+            <a href="#">Check out</a> our solutions, or browse any problems you might want. <a href="#">Sign up</a> to post a problem 
+            or show us your awesome solution!
+            </p>
         </div>
+
+        <hr class="divider"> 
+
+        <div class="container text-center my-3">
+            <h2 > Check out upvoted solutions </h2>
+            
+            <div class="row mx-auto my-auto">
+                <div id="recipeCarousel" class="carousel slide w-100" data-ride="carousel">
+                    <div class="carousel-inner w-100" role="listbox">
+                       
+
+
+                        <div class="carousel-item active">
+                            <div class="col-md-4">
+
+                                <div class="card text-white bg-dark mb-3" style="width: auto;">
+                                    <img src="/lab/vikiLearn.png" class="card-img-top">
+                                    <div class="card-body">
+                                      <h5 class="card-title">Viki Learn</h5>
+                                      <p class="card-text">Language game developed to enourage learning of new languages through gamified elements. It included Levels, resources, building, story, quizzes, character creation and more. </p>
+                                      <p class="card-text">Tools: Unity, C# </p>
+                                      <a href="https://github.com/RasmusKW/PolyVikingGit" target="_blank" class="btn btn-primary">Github Link</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="carousel-item">
+                            <div class="col-md-4">
+                                
+                                <div class="card text-white bg-dark mb-3" style="width: auto;">
+                                    <img src="/lab/progExam.jpg" class="card-img-top">
+                                    <div class="card-body">
+                                      <h5 class="card-title">Exam Project</h5>
+                                      <p class="card-text">Spring MVC website made for an exam project to showcase the skills learned throughout the semester, with focus on a asynchronus website that requires no page reloads.</p>
+                                      <p class="card-text">Tools: Spring Boot, JavaScript, AJAX, Json, JQuery </p>
+                                      <a href="https://github.com/RasmusKW/progExam2020" target="_blank" class="btn btn-primary">Github Link</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="carousel-item">
+                            <div class="col-md-4">
+                                
+                                <div class="card text-white bg-dark mb-3" style="width: auto;">
+                                    <img src="/lab/hercules.jpg" class="card-img-top">
+                                    <div class="card-body">
+                                      <h5 class="card-title">Herkules Nedrivning</h5>
+                                      <p class="card-text">A project developed for a demolition company that needed a platform to keep track of cases, employees, see avaliable tools and calculate costs of new cases.</p>
+                                      <p class="card-text">Tools: Spring Boot, JPA, MySQL </p>
+                                      <a href="https://github.com/Mysqlteers/Hercules" target="_blank" class="btn btn-primary">Github Link</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                          
+                    <a class="carousel-control-prev w-auto" href="#recipeCarousel" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon bg-dark border border-dark rounded-circle" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    
+                    <a class="carousel-control-next w-auto" href="#recipeCarousel" role="button" data-slide="next">
+                    
+                        <span class="carousel-control-next-icon bg-dark border border-dark rounded-circle" aria-hidden="true"></span>
+                    
+                        <span class="sr-only">Next</span>
+                    
+                    </a>
+                </div>  
+            </div>
+        </div>
+
+    </div>
+
+        
     </div>
 
 </body>
