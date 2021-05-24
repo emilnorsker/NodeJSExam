@@ -22,9 +22,9 @@
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
             
-            <h3 style="font-weight: bold;">Solution</h3>
+            <h3 style="font-weight: bold;" id="title">Solution</h3>
             <p style="text-align: left;">By Test name</p> <!--TODO lav det til brugeren som har uploadeds navn-->
-            <h4 style="font-weight: bold;">Description</h4>
+            <h4 style="font-weight: bold;" id="description" >Description</h4>
             <div class="files" id="fileList">
             </div>
             <div class="codeBox" id="fileContentDisplayer">
@@ -33,17 +33,11 @@
         </div>
     </div>
 
-    
     <script src="/solution/solution.js"></script>
     <!-- Required Highlight.js script -->
     <script>hljs.highlightAll();</script>
-    <!-- Script made to escape HTML inside <code> tags -->
-    <script src="/solution/escapeHTML.js"></script>
+    
     <script>
-        document.querySelectorAll('div.codeBox').forEach(block => {
-        // then highlight each
-        hljs.highlightBlock(block);
-      });
     </script>
     
 </body>

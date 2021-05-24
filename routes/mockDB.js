@@ -25,14 +25,13 @@ const solutions = [{
         image: '/lab/vikiLearn.png',
         hostedLink: 'https://github.com/RasmusKW/PolyVikingGit',
         gitLink: 'https://github.com/RasmusKW/PolyVikingGit',
-        files : [ { filename : 'main', filetype : 'js', content: "console.log('hello world')" }, { filename : 'notMain', filetype : 'js', content: "console.log('goodbye world')" } ]
+        files : [ { filename : 'main.js', content: "console.log('hello world')" }, { filename : 'notMain.js', content: "<script> alert(1) </script>" } ]
     }];
 
 
 
 
 router.get("/api/solution/get/:id", ( request , response ) => {
-    console.log( request )
     const solution = solutions.find( solution => solution.id == request.params.id  );
     response.send( solution );
 });
