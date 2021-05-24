@@ -21,6 +21,7 @@ const home = fs.readFileSync( __dirname + '/public/home/home.html', 'utf-8' );
 const lab = fs.readFileSync( __dirname + '/public/lab/lab.html', 'utf-8' );
 const chat = fs.readFileSync( __dirname + '/public/lab/chat/chat.html', 'utf-8' );
 const chatIndex = fs.readFileSync( __dirname + '/public/lab/chat/index.html', 'utf-8' );
+const solution = fs.readFileSync( __dirname + '/public/solution/solution.html', 'utf-8' );
 
 app.get( '/', ( request, response ) => {
     response.send(nav + home + footer );
@@ -30,6 +31,9 @@ app.get( '/lab', ( request, response ) => {
     response.send(nav + lab + footer );
 } )
 
+app.get( '/solution', ( request, response ) => {
+    response.send(nav + solution + footer);
+} )
 
 app.get( '/lab/chat', ( request, response ) => {
     response.send(chat);

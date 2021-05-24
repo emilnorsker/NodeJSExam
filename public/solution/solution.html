@@ -1,0 +1,77 @@
+<head>
+    <!-- Meta tags -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    
+    <!-- stylesheet references using Bootstrap 4, Highlight.js and solution.css -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/stackoverflow-dark.min.css">
+    <link rel="stylesheet" href="/solution/solution.css">
+
+    <!-- Highlight.js Required JS script -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
+
+    <!-- Title of the page -->
+    <title>Projects</title>
+
+</head>
+ 
+<body>
+
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            
+            <h3 style="font-weight: bold;">Solution</h3>
+            <p style="text-align: left;">By Test name</p> <!--TODO lav det til brugeren som har uploadeds navn-->
+            <h4 style="font-weight: bold;">Description</h4>
+            <div class="files">
+                <p>test.pdf</p>
+                <p>test.pdf</p>
+                <p>test.pdf</p>
+                <p>test.pdf</p>
+                <p>test.pdf</p>
+            </div>
+            <div class="codeBox" style="text-align: justify;">
+                <link rel="stylesheet" href="/footer/footer.css">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+                <footer>
+                    <p id="footer-about"></p>
+                    <p><a href="/contact">Contact</a> me</p>
+                    <p>Phone: 12346789</p>
+                    <p>Email: businessnoneofyour65@gmail.com</p>
+                </footer><footer>
+                    <p id="footer-about"></p>
+                    <p><a href="/contact">Contact</a> me</p>
+                    <p>Phone: 12346789</p>
+                    <p>Email: businessnoneofyour65@gmail.com</p>
+                </footer><footer>
+                    <p id="footer-about"></p>
+                    <p><a href="/contact">Contact</a> me</p>
+                    <p>Phone: 12346789</p>
+                    <p>Email: businessnoneofyour65@gmail.com</p>
+                </footer><footer>
+                    <p id="footer-about"></p>
+                    <p><a href="/contact">Contact</a> me</p>
+                    <p>Phone: 12346789</p>
+                    <p>Email: businessnoneofyour65@gmail.com</p>
+                </footer>
+                <script src="/footer/footer.js"></script>
+            </div>
+
+        </div>
+    </div>
+
+    
+    <!-- Required Highlight.js script -->
+    <script>hljs.highlightAll();</script>
+    <!-- Script made to escape HTML inside <code> tags -->
+    <script src="/solution/escapeHTML.js"></script>
+    <script>
+        document.querySelectorAll('div.codeBox').forEach(block => {
+        // then highlight each
+        hljs.highlightBlock(block);
+      });
+    </script>
+    
+</body>
