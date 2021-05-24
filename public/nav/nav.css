@@ -1,6 +1,18 @@
 #logo {
     width: 75px;
 }
+body{
+  background: rgb(39,39,39);
+  font-family:'Courier New', Courier, monospace;
+}
+
+.text{
+  float: right;
+  margin: 20px;
+  position: relative;
+  bottom: 4vh;
+  left: 3vh;
+}
 
 
 /* width */
