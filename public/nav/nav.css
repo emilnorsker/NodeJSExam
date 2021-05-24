@@ -8,3 +8,36 @@
     padding: 5px; 
     padding-bottom: 1px;
 }
+body{
+  background: rgb(39,39,39);
+  font-family:'Courier New', Courier, monospace;
+}
+
+.text{
+  float: right;
+  margin: 20px;
+  position: relative;
+  bottom: 4vh;
+  left: 3vh;
+}
+
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    opacity: 0%;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    opacity: 0%;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
