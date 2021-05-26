@@ -2,13 +2,12 @@
  <link rel="stylesheet" href="/solution/solution.css">
  <!-- Highlight.js Required JS script -->
  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
- <!-- Title of the page -->
+
  <title>Project</title>
 
 </head>
  
 <body>
-    <data data-solution="0">
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
             <div class="row">
@@ -30,7 +29,7 @@
                     <h5 style="font-weight: bold;">Content Displayer</h5>
                     <div class="codeBox" id="fileContentDisplayer"></div>
                 </div>
-                <hr class="solid">
+
                 <div class="row">
                     <div class="col-md-12">
                     <h5 style="font-weight: bold;" class="comment-h5 mt-4">Comments</h5>
@@ -38,22 +37,10 @@
                     <div class="commentSection ml-4">
                         <div class="form-group">
                             <textarea id="textarea" placeholder="Write your comment" rows="3" class="form-control"></textarea>
-                            <button id="submitBtn" class="btn btn-primary mb-1">Post Comment</button>
+                            <button id="submitBtn" onclick="sendComment()" class="btn btn-primary mb-1">Post Comment</button>
                             <div class="row">
                             <div class="col-md-12 mt-2">
-                                <ul class="comment-box">
-                                    <li>
-                                    <div class="card border-light text-white bg-dark mb-3">
-                                        <div class="card-body">
-                                            <h6 class="text-">Rasmus KW</h6>
-                                            <p style="text-align: left; font-style: italic;">Wow this solution looks amazing!</p>
-                                            <div>
-                                                <img src="/solution/clock.png" alt="clock">
-                                                <small>11:34</small>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    </li>
+                                <ul id="commentBox" class="comment-box">
                                 </ul>
                             </div>
                         </div>
@@ -63,8 +50,10 @@
             </div>
         </div>
     </div>
-    <script src="/solution/comments.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.25.3/moment.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+          const socket = io();
+    </script>
     <script src="/solution/solution.js"></script>
     <!-- Required Highlight.js script -->
     <script>hljs.highlightAll();</script>

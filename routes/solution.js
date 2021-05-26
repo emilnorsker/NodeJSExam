@@ -32,7 +32,9 @@ const connect = () => {
 
 /** posts a new solution */
 router.post( '/api/solution/add', ( request , response ) => {
-    db.getDB().collection( collection ).insert
+    db.getDB().collection( collection ).insert( 
+        request.body.solution()
+    );
 });
 
 router.get( '/solution/:id', ( request, response ) => { // todo sanitise input
