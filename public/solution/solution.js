@@ -1,15 +1,30 @@
+
+
 $( document ).ready( loadPage() );
+
+let solutionID;
 
 async function loadPage() {
 
   await getSolution();
   formatHtml();
   highlight();
+
+  solutionID = $( '#solutionID' ).data('solution');
+
+  socket.on( 'comment' + solutionID, (data) => {
+    console.log( 'recieved comment : ', data.comment)
+    $( '#commentsField' ).append( data ); 
+  });
 }
 
-
-
-
+function sendComment() {
+  console.log( 'sending comment' );
+  const comment = $('#commentTextArea').val();
+  console.log(comment);
+  
+  socket.emit("comment", { 'comment' : comment , 'solutionID' : solutionID} );
+}
 
 async function getSolution() {
   try {
@@ -30,30 +45,23 @@ async function getSolution() {
   }
 }
 
-async function createSolution( data ) {
-  await new Promise( (resolve, reject) =>{
-
-     $( '#title').text( data.title );
-     $( '#description').text( data.description );
-
-    data.files.forEach( file => {
-      const fileElement =  document.createElement( 'li' );
-      fileElement.innerText = file.filename ;
-      fileElement.dataset.fileName = file.filename ;
-      fileElement.onclick = () => {
-        $( '#fileContentDisplayer').text( file.content );
-        
-        highlight();
-      }
-
-      $( '#fileList' ).append( fileElement );
-
-    });
-
-    $( '#fileContentDisplayer').text( data.files[0].content );
-    resolve();  
+function createSolution( data ) {
+  
+  $( '#title').text( data.title );
+  $( '#description').text( data.description );
+  data.files.forEach( file => {
+    
+    const fileElement =  document.createElement( 'li' );
+    fileElement.innerText = file.filename ;
+    fileElement.dataset.fileName = file.filename ;
+    fileElement.onclick = () => {
+      $( '#fileContentDisplayer').text( file.content );
+      highlight(); 
+    }
+    $( '#fileList' ).append( fileElement );  
   });
 
+  $( '#fileContentDisplayer').text( data.files[0].content );
 }
 
 
@@ -76,3 +84,5 @@ document.querySelectorAll('.codeBox').forEach(function(element) {
   element.innerHTML = element.innerHTML.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
 });
 }
+
+

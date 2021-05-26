@@ -1,24 +1,14 @@
 <head>
-    <!-- Meta tags -->
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    
-    <!-- stylesheet references using Bootstrap 4, Highlight.js and solution.css -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/stackoverflow-dark.min.css">
-    <link rel="stylesheet" href="/solution/solution.css">
-
-    <!-- Highlight.js Required JS script -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
-
-    <!-- Title of the page -->
-    <title>Projects</title>
+ <link rel="stylesheet" href="/solution/solution.css">
+ <!-- Highlight.js Required JS script -->
+ <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
+ <!-- Title of the page -->
+ <title>Project</title>
 
 </head>
  
 <body>
-
+    <data data-solution="0">
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
             
@@ -30,9 +20,20 @@
             <div class="codeBox" id="fileContentDisplayer">
             </div>
 
+            <div id="commentsField" >
+                <textarea id="commentTextArea">
+
+                </textarea>
+                <button onclick="sendComment()"> click </button>
+            </div>
+
         </div>
     </div>
 
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+          const socket = io();
+    </script>
     <script src="/solution/solution.js"></script>
     <!-- Required Highlight.js script -->
     <script>hljs.highlightAll();</script>

@@ -1,74 +1,34 @@
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="/lab/lab.css">
-    <title>Projects</title>
+ <link rel="stylesheet" href="/solution/solution.css">
+ <!-- Highlight.js Required JS script -->
+ <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
+ <!-- Title of the page -->
+ <title>Project</title>
 
 </head>
+ 
 <body>
+    <data data-solutionid="s1">
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
-
-            <h3 style="font-weight: bold;">Projects</h3>
-
-            <!-- Project Cards Grid -->
-            <div class="row row-cols-1 row-cols-md-3">
-
-                <!-- Card 1 -->
-                <div class="col mb-4">
-                    <div class="card text-white bg-dark mb-3" style="width: 18rem;">
-                        <img src="/lab/vikiLearn.png" class="card-img-top">
-                        <div class="card-body">
-                          <h5 class="card-title">Viki Learn</h5>
-                          <p class="card-text">Language game developed to enourage learning of new languages through gamified elements. It included Levels, resources, building, story, quizzes, character creation and more. </p>
-                          <p class="card-text">Tools: Unity, C# </p>
-                          <a href="/solution" class="btn btn-primary">Github Link</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 2 -->
-                <div class="col mb-4"> 
-                    <div class="card text-white bg-dark mb-3" style="width: 18rem;">
-                        <img src="/lab/progExam.jpg" class="card-img-top">
-                        <div class="card-body">
-                          <h5 class="card-title">Exam Project</h5>
-                          <p class="card-text">Spring MVC website made for an exam project to showcase the skills learned throughout the semester, with focus on a asynchronus website that requires no page reloads.</p>
-                          <p class="card-text">Tools: Spring Boot, JavaScript, AJAX, Json, JQuery </p>
-                          <a href="https://github.com/RasmusKW/progExam2020" target="_blank" class="btn btn-primary">Github Link</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="col mb-4"> 
-                    <div class="card text-white bg-dark mb-3" style="width: 18rem;">
-                        <img src="/lab/hercules.jpg" class="card-img-top">
-                        <div class="card-body">
-                          <h5 class="card-title">Herkules Nedrivning</h5>
-                          <p class="card-text">A project developed for a demolition company that needed a platform to keep track of cases, employees, see avaliable tools and calculate costs of new cases.</p>
-                          <p class="card-text">Tools: Spring Boot, JPA, MySQL </p>
-                          <a href="https://github.com/Mysqlteers/Hercules" target="_blank" class="btn btn-primary">Github Link</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Test Card for the chat -->
-                <div class="col mb-4"> 
-                    <div class="card text-white bg-dark mb-3" style="width: 18rem;">
-                        <img src="/lab/hercules.jpg" class="card-img-top">
-                        <div class="card-body">
-                          <h5 class="card-title">Chat</h5>
-                          <p class="card-text">A live chat made using socket.io making you able to connect with multiple clients</p>
-                          <p class="card-text">Tools: Spring Boot, JPA, MySQL, socket.io </p>
-                          <a href="/lab/index" target="_blank" class="btn btn-primary">Github Link</a>
-                        </div>
-                    </div>
-                </div>
-
+            
+            <h3 style="font-weight: bold;" id="title">Solution</h3>
+            <p style="text-align: left;">By Test name</p> <!--TODO lav det til brugeren som har uploadeds navn-->
+            <h4 style="font-weight: bold;" id="description" >Description</h4>
+            <div class="files" id="fileList">
             </div>
+            <div class="codeBox" id="fileContentDisplayer">
+            </div>
+
         </div>
     </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/solution/solution.js"></script>
+    <!-- Required Highlight.js script -->
+    <script>hljs.highlightAll();</script>
+    
+    <script>
+    </script>
+    
 </body>
