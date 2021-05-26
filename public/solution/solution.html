@@ -27,7 +27,8 @@
 
                 <div class="col-sm">
                     <h5 style="font-weight: bold;">Content Displayer</h5>
-                    <div class="codeBox" id="fileContentDisplayer"></div>
+                    <div class="codeBox" id="fileContentDisplayer">
+                    </div>
                 </div>
 
                 <div class="row">
@@ -50,10 +51,18 @@
             </div>
         </div>
     </div>
+    
     <script src="/socket.io/socket.io.js"></script>
     <script>
           const socket = io();
     </script>
+    <script>"https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+    </script>   
+    <script src="moment.js"></script>
+    <script>
+          moment().format();
+    </script>
+    
     <script src="/solution/solution.js"></script>
     <!-- Required Highlight.js script -->
     <script>hljs.highlightAll();</script>

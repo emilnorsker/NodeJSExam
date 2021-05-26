@@ -15,29 +15,32 @@ async function loadPage() {
 
 function defineOnIO() {
   socket.on( 'comment' + solutionID, (data) => {
-    let markup = 
+    addComment(data);
+  });
+}
+
+function addComment( data ) {
+  let markup = 
     `<li>
     <div class="card border-light text-white bg-dark mb-3">
         <div class="card-body">
-            <h6 class="text-">Test User</h6>
+            <h6 class="text-">Martin Hansen</h6>
             <p style="text-align: left;">${data.comment}</p>
             <div>
                 <img src="/solution/clock.png" alt="clock">
-                <small>Just Now</small>
+                <small>${data.uploadTime}</small>
             </div>
         </div>
     </div>
     </li>`
     console.log( 'recieved comment : ', data.comment)
-    $( '#commentBox' ).append( markup ); 
-  });
+    $( '#commentBox' ).append( markup );  
 }
-//${moment(data.time).format('HH:mm')}
 
 function sendComment() {
-  console.log( 'sending comment' );
+  //console.log( 'sending comment' );
   const comment = $('#textarea').val();
-  console.log(comment);
+  //console.log(comment);
   
   socket.emit("comment", { 'comment' : comment , 'solutionID' : solutionID} );
 }
@@ -46,9 +49,9 @@ async function getSolution() {
   try {
 
       const response = await fetch("/api/solution/get/1");
-      console.log( response );
+      //console.log( response );
       const result = await response.json();
-      console.log( result )
+      //console.log( result )
 
       const mainContainer = $( '#mainContainer' );
       await new Promise( (resolve, reject) =>{
@@ -62,9 +65,12 @@ async function getSolution() {
 }
 
 function createSolution( data ) {
-  
   $( '#title').text( data.title );
   $( '#description').text( data.description );
+  /*data.comments.forEach( comment => {
+    console.log(comment);
+    addComment(comment);
+  });*/
   data.files.forEach( file => {
     
     const fileElement =  document.createElement( 'li' );
@@ -109,13 +115,13 @@ function allowEdit(){
     files : files
   }
 
-  saveBtn.onclick = () => { console.log( solutionObject ) };
+  saveBtn.onclick = () => {};
 
   const fileUpload = document.createElement( 'input' );
   fileUpload.type = 'file';
   fileUpload.id = 'fileUploadBtn';
   fileUpload.multiple = true;
-  fileUpload.onclick = () => { console.log('now')};
+  fileUpload.onclick = () => {};
 
   const addFileBtn = document.createElement( 'button' );
   addFileBtn.className = 'btn-primary';
