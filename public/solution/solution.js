@@ -11,9 +11,6 @@ async function loadPage() {
   // replace with a fetch to see if token is valid?
   allowEdit();
 
-
-  
-
   socket.on( 'comment' + solutionID, (data) => {
     console.log( 'recieved comment : ', data.comment)
     $( '#commentsField' ).append( data ); 
@@ -74,11 +71,7 @@ function allowEdit(){
   saveBtn.className = 'btn-primary';
   saveBtn.innerText = 'Save';
   saveBtn.style.float = 'right';
-
-  
-
   /** read content */
-
   let files = [];
   if( $('.fileElement') ) {
   $( '.fileElement' ).each( (_file) => {
@@ -86,7 +79,7 @@ function allowEdit(){
     files.push(file);
   } );
   }
-  
+
   const solutionObject = {
     title : $('#title').val(),
     description : $('#description').val(),
@@ -96,7 +89,6 @@ function allowEdit(){
   }
 
   saveBtn.onclick = () => { console.log( solutionObject ) };
-
   const fileUpload = document.createElement( 'input' );
   fileUpload.type = 'file';
   fileUpload.id = 'fileUploadBtn';
@@ -106,7 +98,6 @@ function allowEdit(){
   const addFileBtn = document.createElement( 'button' );
   addFileBtn.className = 'btn-primary';
   addFileBtn.innerText = 'Add File';
-
 
   $( '#title' ).append( saveBtn );
   $( '#fileContentDisplayer' ).append( fileUpload );

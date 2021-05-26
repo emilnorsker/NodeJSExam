@@ -18,9 +18,6 @@ const init = ( _footer, _body, _header, _io) => {
 const connect = () => {
     io.on("connection", (socket) => {
         socket.on("comment", (data) => {
-            console.log(data);
-            const endpoint  = "comment" + data.solutionID;
-            io.emit(endpoint, { "comment" : data.comment });
         });
         socket.on("disconnect", () => {
             console.log("A socket disconnect");
@@ -28,6 +25,7 @@ const connect = () => {
     });
 
 }
+
 
 
 /** posts a new solution */
