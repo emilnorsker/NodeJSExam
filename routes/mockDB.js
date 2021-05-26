@@ -25,7 +25,8 @@ const solutions = [{
         image: '/lab/vikiLearn.png',
         hostedLink: 'https://github.com/RasmusKW/PolyVikingGit',
         gitLink: 'https://github.com/RasmusKW/PolyVikingGit',
-        files : [ { filename : 'main.js', content: "console.log('hello world')" }, { filename : 'notMain.js', content: "<script> alert(1) </script> \n<script> alert(1) </script><script> alert(1) </script><script> alert(1)\n </script><script> alert(1)\n</script><script> alert(1) \n </script><script> alert(1)\n</script><script> alert(1) \n </script><script> alert(1)\n</script><script> alert(1) \n </script><script> alert(1)\n</script><script> alert(1) \n </script><script> alert(1)\n</script><script> alert(1) \n </script><script> alert(1)\n</script><script> alert(1) \n </script><script> alert(1)\n</script><script> alert(1) </script><script> alert(1)\n </script><script> alert(1)\n </script>" } ]
+        comments: [ {author: "me", content : "awesome content, <!> // this code should be highligted \n console.log() <!>", embed : "console.log(hello world)"}, {}, {} ],
+        files : [ { filename : 'main.js', content: "console.log('hello world') \n//comment should be grey" }, { filename : 'notMain.js', content: "<script> alert(1) </script>" } ]
     }];
 
 
