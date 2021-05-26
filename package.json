@@ -21,7 +21,6 @@
   "homepage": "",
   "dependencies": {
     "express": "^4.17.1",
-    "highlightjs-line-numbers.js": "^2.8.0",
     "html-escaper": "^3.0.3",
     "moment": "^2.29.1",
     "mongodb": "^3.6.8",

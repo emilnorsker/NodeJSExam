@@ -43,12 +43,20 @@ router.get("/api/solution/get/:id", async ( request , response ) => {
     response.send( solutionObject );
 });
 
+
 /** posts a new solution */
 router.post( '/api/solution/add', ( request , response ) => {
-    db.getDB().collection( collection ).insert( 
-        request.body.solution()
+    db.getDB().collection( collection ).insertOne( 
+        request.body.solution
     );
 });
+
+router.get("/api/solution/get/:id", async ( request , response ) => {
+    const solutionObject = await db.getDB().collection(collection).findOne( {} );
+    console.log( solutionObject );
+    response.send( solutionObject );
+});
+
 
 router.get( '/solution/:id', ( request, response ) => { // todo sanitise input
     response.send( header + '<data id="solutionID" data-solution=' + request.params.id + '>' + body + footer ); //dangerous! 

@@ -22,16 +22,12 @@ app.get( '/', ( request, response ) => {
 
 /** solution view  */
 const solutionRouter = require( __dirname + '/routes/solution.js' );
-
 const solution = fs.readFileSync( __dirname + '/public/solution/solution.html', 'utf-8' );
 solutionRouter.init( footer, solution, nav, io );
 app.use( solutionRouter.router ); 
 
-const PORT = 8080 || process.env.PORT;
-
-
 /** server */
-var Server ;
+var Server;
 db.connect( ( error ) => { 
     if( error ){
         console.log( 'unable to connect to database, error : ', error );
@@ -44,5 +40,6 @@ db.connect( ( error ) => {
         });
     }
 } );
+
 
 
