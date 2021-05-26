@@ -33,12 +33,13 @@ body{
   
   /* Track */
   ::-webkit-scrollbar-track {
-    opacity: 0%;
+    opacity: 40%;
   }
   
   /* Handle */
   ::-webkit-scrollbar-thumb {
-    opacity: 0%;
+    background: #555;
+    opacity: 40%;
   }
   
   /* Handle on hover */

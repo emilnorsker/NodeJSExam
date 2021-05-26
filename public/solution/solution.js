@@ -17,9 +17,7 @@ async function getSolution() {
   try {
 
       const response = await fetch("/api/solution/get/1");
-      console.log( response );
       const result = await response.json();
-      console.log( result )
 
       const mainContainer = $( '#mainContainer' );
       await new Promise( (resolve, reject) =>{
@@ -36,7 +34,7 @@ function createSolution( data ) {
   $( '#title').text( data.title );
   $( '#description').text( data.description );
   data.files.forEach( file => {
-    
+
     const fileElement =  document.createElement( 'li' );
     fileElement.className = 'fileElement';
     fileElement.innerText = file.filename ;
@@ -94,7 +92,7 @@ function allowEdit(){
   saveBtn.innerText = 'Save';
   saveBtn.style.float = 'right';
   
-  saveBtn.onclick = () => { console.log( solutionObject ) };
+  saveBtn.onclick = () => { updateSolution() };
 
   const fileUpload = document.createElement( 'input' );
   fileUpload.type = 'file';
@@ -112,12 +110,26 @@ function allowEdit(){
   $( '#main-card' ).append( addFileBtn );
 
 
+  /** todo :
+   * post to solution -> create button with post, that takes in the info: v/
+   * comments should not be changed.
+  */
+
+}
+
+/** sends a post to the server, which update the solution  */
+function updateSolution() {
   let files = [];
   if( $('.fileElement') ) {
-  $( '.fileElement' ).each( (_file) => {
+    console.log( $( '.fileElement' ) );
+
+  $( '.fileElement' ).each( () => {
+  
+    console.log( $(this) );
     const file = { filename : _file.dataset.fileName, content : _file.dataset.content }
     files.push(file);
-  } );
+    } );  
+
   }
 
   const solutionObject = {
@@ -127,7 +139,8 @@ function allowEdit(){
     image : '',
     files : files
   }
-  ajax( {
+  /*
+  $.ajax( {
     url : "/api/solution/add",
     data : { author : 'anon-007', solution : solutionObject },
     succes : (data) => {
@@ -135,16 +148,7 @@ function allowEdit(){
     }, error : ( error ) => {
       console.log( error );
     }
-  } );
-
-  /** todo :
-   * upload file -> create button to upload file, read contents, display contents. v/
-   * change text -> make text editable,  
-   * post to solution -> create button with post, that takes in the info:
-   * author name, all fields, #some token for security#, all files as a file name and a text.
-   * **comments should not be changed.
-  */
-
+  } ); */
 }
 
 function uploadFileTobrowser() {
@@ -161,14 +165,15 @@ function uploadFileTobrowser() {
         const lines = file.split(/\r\n|\n/);
         content = lines.join('\n');
     };
-    reader.onerror = (e) => alert(e.target.error.name);
+    reader.onerror = ( error ) => alert( error.target.error.name );
  
-    reader.readAsText(file); 
+    reader.readAsText( file ); 
 
+    console.log( file );
     /** Adds the file to the viewer */
     const fileElement =  document.createElement( 'li' );
     fileElement.className = 'fileElement';
-    fileElement.innerText = file.filename ;
+    fileElement.innerText = file.name ;
     fileElement.dataset.fileName = file.name ;
     fileElement.dataset.fileContent = file.content ;
 

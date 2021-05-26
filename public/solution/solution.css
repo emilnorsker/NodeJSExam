@@ -19,6 +19,10 @@ body{
     margin-right: 2px;
 }
 
+.ul {
+    list-style-type: none;
+}
+
 .container{
     background-color: rgb(31, 31, 31);
     border-radius: 5px;
