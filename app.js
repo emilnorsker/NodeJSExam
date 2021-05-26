@@ -8,14 +8,8 @@ const db = require( './models/mongoDB.js')
 const app = express();
 app.use( express.json() );
 app.use( express.static( 'public' ) );
-
-let server = http.createServer( app );
+const server = http.createServer( app );
 const io = socketIO( server );
-
-/** database, replace with proper db once created 
-const db = require( __dirname + '/routes/mockDB.js' );
-app.use( db.router );
-*/
 
 const nav = fs.readFileSync( __dirname + '/public/nav/nav.html', 'utf-8' );
 const footer = fs.readFileSync( __dirname + '/public/footer/footer.html', 'utf-8' );
@@ -28,23 +22,12 @@ app.get( '/', ( request, response ) => {
 
 /** solution view  */
 const solutionRouter = require( __dirname + '/routes/solution.js' );
-
 const solution = fs.readFileSync( __dirname + '/public/solution/solution.html', 'utf-8' );
 solutionRouter.init( footer, solution, nav, io );
 app.use( solutionRouter.router ); 
 
-/** chat */
-const chat = fs.readFileSync( __dirname + '/public/problems/chat/chat.html', 'utf-8' );
-const chatIndex = fs.readFileSync( __dirname + '/public/problems/chat/index.html', 'utf-8' );
-
-app.get( '/assets/chat', ( request, response ) => {
-    response.send( chat );
-} )
-
-
-
 /** server */
-var Server ;
+var Server;
 db.connect( ( error ) => { 
     if( error ){
         console.log( 'unable to connect to database, error : ', error );
@@ -57,5 +40,6 @@ db.connect( ( error ) => {
         });
     }
 } );
+
 
 

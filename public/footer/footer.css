@@ -1,9 +1,11 @@
+
 #footer-about {
     height: 10px;
     display: flex;
     justify-content: center;    
     color: white;
-
+    margin-top: auto;
+    background-color:rgb(39, 39, 39);
 }
 
 p{
