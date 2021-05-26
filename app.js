@@ -1,25 +1,16 @@
 const express = require( 'express' );
-const path = require( 'path' );
 const http = require( 'http' );
+const path = require( 'path' );
 const fs = require( 'fs' );
-const socketio = require('socket.io');
 
 const app = express();
 app.use( express.json() );
 app.use( express.static( 'public' ) );
+const server = http.createServer(app);
 
 /** database, replace with proper db once created */
 const db = require( __dirname + '/routes/mockDB.js' );
 app.use( db.router );
-
-/** start: this should be moved to a route to not clutter the main */
-const server1 = http.createServer( app );
-const io = socketio( server1 );
-
-io.on('connection', socket => {
-    console.log('New WS connection....');
-})
-/** :end */
 
 const nav = fs.readFileSync( __dirname + '/public/nav/nav.html', 'utf-8' );
 const footer = fs.readFileSync( __dirname + '/public/footer/footer.html', 'utf-8' );
@@ -55,9 +46,9 @@ app.get( '/lab/index', ( request, response ) => {
     response.send( chatIndex );
 } )
 
+const PORT = 8080 || process.env.PORT;
 
-
-const server = app.listen( process.env.PORT || 8080, ( error ) => {
+server.listen(PORT, (error) => {
     if ( error ) { console.log( error ); }
-    console.log( 'Server is running on port', server.address().port );
+    console.log( `Server is running on port ${PORT}`  );
 });

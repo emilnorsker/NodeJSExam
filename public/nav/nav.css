@@ -13,6 +13,10 @@ body{
   font-family:'Courier New', Courier, monospace;
 }
 
+.custom-nav{
+  background-color:rgb(39, 39, 39);
+}
+
 .text{
   float: right;
   margin: 20px;
