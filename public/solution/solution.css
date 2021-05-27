@@ -21,6 +21,7 @@ body{
 
 .ul {
     list-style-type: none;
+    
 }
 
 .container{
@@ -80,6 +81,10 @@ p{
     max-width: 1111px;
     background-color: rgb(49, 50, 51);
     text-align: left;
+}
+
+#main-body {
+    width: 100%;
 }
 
 .comment-h5{

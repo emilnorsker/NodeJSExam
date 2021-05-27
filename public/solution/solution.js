@@ -3,50 +3,23 @@ let solutionID;
 $( document ).ready( loadPage() );
 
 async function loadPage() {
-  solutionID = $( '#solutionID' ).data('solution');
   await getSolution();
  
   // replace with a fetch to see if token is valid?
   allowEdit();
-  defineOnIO();
+  defineSocketBehavior();
 }
 
-function defineOnIO() {
+function defineSocketBehavior() {
   socket.on( 'comment' + solutionID, (data) => {
     addComment(data);
   });
 }
 
-function addComment( data ) {
-  let markup = 
-    `<li>
-    <div class="card border-light text-white bg-dark mb-3">
-        <div class="card-body">
-            <h6 class="text-">Martin Hansen</h6>
-            <p style="text-align: left;">${data.comment}</p>
-            <div>
-                <img src="./assets/clock.png" alt="clock">
-                <small>${data.uploadTime}</small>
-            </div>
-        </div>
-    </div>
-    </li>`
-    console.log( 'recieved comment : ', data.comment)
-    $( '#commentBox' ).append( markup );  
-}
-
-function sendComment() {
-  //console.log( 'sending comment' );
-  const comment = $('#textarea').val();
-  //console.log(comment);
-  
-  highlight();
-}
-
 async function getSolution() {
   try {
-
-      const response = await fetch("/api/solution/get/1");
+      solutionID = $( '#solutionID' ).data('solution');
+      const response = await fetch("/api/solution/get/"+solutionID);
       const result = await response.json();
 
       const mainContainer = $( '#mainContainer' );
@@ -88,11 +61,25 @@ function createSolution( data ) {
 }
 
 function sendComment() {
-  console.log( 'sending comment' );
   const comment = $('#textarea').val();
-  console.log(comment);
-  
   socket.emit("comment", { 'comment' : comment , 'solutionID' : solutionID} );
+}
+
+function addComment( data ) {
+  let markup = 
+    `<li>
+    <div class="card border-light text-white bg-dark mb-3">
+        <div class="card-body">
+            <h6 class="text-">Martin Hansen</h6>
+            <p style="text-align: left;">${data.comment}</p>
+            <div>
+                <img src="../assets/clock.png" alt="clock ">
+                <small>${data.uploadTime}</small>
+            </div>
+        </div>
+    </div>
+    </li>`
+    $( '#commentBox' ).append( markup );  
 }
 
 
@@ -110,7 +97,7 @@ function allowEdit(){
   fileUpload.type = 'file';
   fileUpload.id = 'fileUploadBtn';
   fileUpload.multiple = true;
-  fileUpload.addEventListener( 'change', () => { console.log($( '#fileUploadBtn' ).prop('files') ) } );
+  //fileUpload.addEventListener( 'change', () => { console.log($( '#fileUploadBtn' ).prop('files') ) } );
 
   const addFileBtn = document.createElement( 'button' );
   addFileBtn.className = 'btn-primary';
@@ -132,39 +119,35 @@ function allowEdit(){
 /** sends a post to the server, which update the solution  */
 function updateSolution() {
   let files = [];
-  if( $('.fileElement') ) {
-    console.log( $( '.fileElement' ) );
+  if( $( '#fileList' ) ) {
+    
+    $( '#fileList' ).children('li').each( function() {
+      console.log( $(this)[0] );
+      const file = { filename : $(this)[0].dataset.fileName, content : $(this)[0].dataset.content }
+      files.push(file);
+      } );  
 
-  $( '.fileElement' ).each( () => {
-  
-    console.log( $(this) );
-    const file = { filename : _file.dataset.fileName, content : _file.dataset.content }
-    files.push(file);
-    } );  
-
-  }
-
-  const solutionObject = {
-    title : $('#title').val(),
-    description : $('#description').val(),
-    lastEditDate :  Date.now(),
-    image : '',
-    files : files
-  }
-  /*
-  $.ajax( {
-    url : "/api/solution/add",
-    data : { author : 'anon-007', solution : solutionObject },
-    succes : (data) => {
-      console.log( 'successfully sent, recievec : ', data );
-    }, error : ( error ) => {
-      console.log( error );
     }
-  } ); */
-}
 
+    const solutionObject = {
+      title : $('#title').text(),
+      description : $('#description').text(),
+      lastEditDate :  Date.now(),
+      image : '',
+      files : files
+    }
+
+  $.ajax( {
+    url : `/api/solution/${ solutionID }/update`,
+    method: 'post',
+    contentType: 'application/json',
+    data : JSON.stringify( { author : 'anon-007', solution : solutionObject } ),
+  } ).done( (data) => {
+    console.log( 'successfully sent, recieved : ', data );
+  } );  
+}
+/** reads a document uploaded to the browser */
 function uploadFileTobrowser() {
-  console.log('adding file')
   const files = $( '#fileUploadBtn' ).prop('files');
   if(files.length == 0) return;
   Array.from(files).forEach( file => {
@@ -198,7 +181,7 @@ function uploadFileTobrowser() {
   } );
 }
 
-
+/** generates class name, that a .css will highligt in different colors  */
 function highlight() {
 document.querySelectorAll('.codeBox').forEach(block => {
   hljs.highlightBlock(block);
@@ -207,7 +190,6 @@ hljs.highlightAll();
 }
 
 //With help from https://stackoverflow.com/questions/22076190/highlightjs-with-html-code
-
 //Script that escapes HTML inside <code> tags so that it is intepreted as text and thereby highlighted correctly by Highlight.js
 function formatHtml() {
   $( '#fileContentDisplayer').forEach(function(element) {
