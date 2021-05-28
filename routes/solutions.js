@@ -1,7 +1,7 @@
-const router = require("express").Router();
+const router = require( "express" ).Router();
 const db = require( '../models/mongoDB.js' );
 
-router.post("/api/problems", (req, res) => {
+router.post("/api/solutions", (req, res) => {
 
     res.redirect("/");
 });

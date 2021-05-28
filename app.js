@@ -21,7 +21,6 @@ app.get( '/', ( request, response ) => {
 } )
 
 /** problems view */
-
 const problemsRouter = require( __dirname + '/routes/problems.js' );
 const problems = fs.readFileSync( __dirname + '/public/problems/problems.html', 'utf-8' )
 app.get( '/problems', ( request, response ) => {
@@ -29,6 +28,16 @@ app.get( '/problems', ( request, response ) => {
 })
 //problemsRouter.init( nav, problems, footer );
 //app.use( problemsRouter.router );
+
+/** solutions view */
+const solutionsRouter = require( __dirname + '/routes/solutions.js' );
+const solutions = fs.readFileSync( __dirname + '/public/solutions/solutions.html', 'utf-8' )
+app.get( '/solutions', ( request, response ) => {
+    response.send( nav + solutions + footer );
+})
+//solutionsRouter.init( nav, solutions, footer );
+//app.use( solutionsRouter.router );
+
 
 /** solution view  */
 const solutionRouter = require( __dirname + '/routes/solution.js' );
