@@ -20,6 +20,16 @@ app.get( '/', ( request, response ) => {
     response.send( nav + home + footer );
 } )
 
+/** problems view */
+
+const problemsRouter = require( __dirname + '/routes/problems.js' );
+const problems = fs.readFileSync( __dirname + '/public/problems/problems.html', 'utf-8' )
+app.get( '/problems', ( request, response ) => {
+    response.send( nav + problems + footer );
+})
+//problemsRouter.init( nav, problems, footer );
+//app.use( problemsRouter.router );
+
 /** solution view  */
 const solutionRouter = require( __dirname + '/routes/solution.js' );
 const solution = fs.readFileSync( __dirname + '/public/solution/solution.html', 'utf-8' );
