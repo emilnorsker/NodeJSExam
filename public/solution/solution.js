@@ -25,7 +25,7 @@ function addComment( data ) {
             <h6 class="text-">Martin Hansen</h6>
             <p style="text-align: left;">${data.comment}</p>
             <div>
-                <img src="./assets/clock.png" alt="clock">
+                <img src="../assets/clock.png" alt="clock">
                 <small>${data.uploadTime}</small>
             </div>
         </div>
@@ -33,14 +33,6 @@ function addComment( data ) {
     </li>`
     console.log( 'recieved comment : ', data.comment)
     $( '#commentBox' ).append( markup );  
-}
-
-function sendComment() {
-  //console.log( 'sending comment' );
-  const comment = $('#textarea').val();
-  //console.log(comment);
-  
-  highlight();
 }
 
 async function getSolution() {
@@ -103,7 +95,7 @@ function allowEdit(){
   saveBtn.className = 'btn-primary';
   saveBtn.innerText = 'Save';
   saveBtn.style.float = 'right';
-  
+
   saveBtn.onclick = () => { updateSolution() };
 
   const fileUpload = document.createElement( 'input' );
@@ -117,9 +109,9 @@ function allowEdit(){
   addFileBtn.innerText = 'Add File';
   addFileBtn.onclick = () => {uploadFileTobrowser();}
 
-  $( '#title' ).append( saveBtn );
-  $( '#main-card' ).append( fileUpload );
-  $( '#main-card' ).append( addFileBtn );
+  $( '#save' ).append( saveBtn );
+  $( '#file' ).append( fileUpload );
+  $( '#file' ).append( addFileBtn );
 
 
   /** todo :
