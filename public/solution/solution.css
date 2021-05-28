@@ -1,37 +1,21 @@
 .jumbotron{
     background: rgb(36, 36, 36);
     color: #f1f1f1;
-}
-
-.custom-jumbroton{
-     width:fit-content;
-    margin: 0 auto;
-    padding: 500px;
+    background-color: rgb(31, 31, 31);
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgb(189, 189, 189);padding: 3%;
 }
 
 body{
     background: rgb(39,39,39);
     font-family:'Courier New', Courier, monospace;
-   
-}
-
-.description{
-    margin-right: 2px;
 }
 
 .ul {
     list-style-type: none;
     
-}
-
-.container{
-    background-color: rgb(31, 31, 31);
-    border-radius: 5px;
-    border-style: solid;
-    border-width: 2px;
-    border-color: rgb(189, 189, 189);
-    padding-top: 3px;
-    padding-bottom: 2px;
 }
 
 .files{
@@ -42,7 +26,6 @@ body{
     border-color: rgb(189, 189, 189);
     padding: auto;
     padding-right: 155px;
-    max-width: 30px;
     height: 500px;
 }
 
@@ -57,7 +40,6 @@ td.hljs-ln-code {
     border-style: solid;
     border-width: 2px;
     border-color: rgb(189, 189, 189);
-    max-width: 628px;
     overflow: auto;
     height: 500px;
 }
@@ -74,19 +56,3 @@ td.hljs-ln-code {
 p{
     font-size: 16px;
 }
-.card{
-    width: 1111px;
-}
-.card-body{
-    max-width: 1111px;
-    background-color: rgb(49, 50, 51);
-    text-align: left;
-}
-
-#main-body {
-    width: 100%;
-}
-
-.comment-h5{
-    margin-left: 7px;
-}  

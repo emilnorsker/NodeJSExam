@@ -12,10 +12,10 @@ const init = ( _footer, _body, _header, _io) => {
     body = _body;
     header = _header;
     io = _io;
-    connect();
+    defineSocketBehavior();
 }
 
-const connect = () => {
+const defineSocketBehavior = () => {
     io.on("connection", (socket) => {
         socket.on("comment", (data) => {
         });
@@ -32,13 +32,14 @@ router.post( '/api/solution/add', ( request , response ) => {
         request.body.solution
     );
 });
+
+/** upate */
 router.post( '/api/solution/:id/update', ( request , response ) => {
-    console.log( 'id :',  request.params.id );
-    console.log( 'ajax :',  request.body );
+    console.log( request.body.solution.files )
     db.getDB().collection( collection ).updateOne( { id : Number(request.params.id) },  
         {$set : request.body.solution}
     );
-    response.send( 'awesome' );
+    response.send( 'Accepted' );
 });
 
 /** gets the solution object from the db */
@@ -55,7 +56,7 @@ router.get("/api/solution/get/:id", async ( request , response ) => {
 
 
 router.get( '/solution/:id', ( request, response ) => { // todo sanitise input
-    response.send( header + '<data id="solutionID" data-solution=' + request.params.id + '>' + body + footer ); //dangerous! 
+    response.send( header + '<data id="solutionID" data-solution=' + request.params.id + '></data>' + body + footer ); //dangerous! 
 } );
 
 

@@ -55,7 +55,7 @@ module.exports = {
         GitLink: (string)
         id : int
         comments : [ {comment:(string), author : (string) } ]
-        files : [ {filename : (string), fileContent : (string) } ]
+        files : [ {filename : (string), content : (string) } ]
 
 */
 

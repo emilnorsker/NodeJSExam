@@ -25,7 +25,7 @@ async function getSolution() {
       const mainContainer = $( '#mainContainer' );
       await new Promise( (resolve, reject) =>{
         resolve( createSolution( result ) );
-      }, ( error ) => { console.log( error ); } );
+      }, ( error ) => { reject( error ); } );
 
   } catch ( error ) {
       console.log( error );
@@ -58,6 +58,7 @@ function createSolution( data ) {
   });
 
   $( '#fileContentDisplayer').text( data.files[0].content );
+  highlight();
 }
 
 function sendComment() {
@@ -105,12 +106,12 @@ function allowEdit(){
   addFileBtn.onclick = () => {uploadFileTobrowser();}
 
   $( '#title' ).append( saveBtn );
-  $( '#main-card' ).append( fileUpload );
-  $( '#main-card' ).append( addFileBtn );
+  $( '#main' ).append( fileUpload );
+  $( '#main' ).append( addFileBtn );
 
 
   /** todo :
-   * post to solution -> create button with post, that takes in the info: v/
+   * post to solution -> create button with post, that takes in the info: v/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
    * comments should not be changed.
   */
 
@@ -123,7 +124,7 @@ function updateSolution() {
     
     $( '#fileList' ).children('li').each( function() {
       console.log( $(this)[0] );
-      const file = { filename : $(this)[0].dataset.fileName, content : $(this)[0].dataset.content }
+      const file = { filename : $(this)[0].dataset.fileName, content : $(this)[0].dataset.fileContent }
       files.push(file);
       } );  
 
@@ -146,33 +147,38 @@ function updateSolution() {
     console.log( 'successfully sent, recieved : ', data );
   } );  
 }
+
 /** reads a document uploaded to the browser */
-function uploadFileTobrowser() {
+async function uploadFileTobrowser() {
   const files = $( '#fileUploadBtn' ).prop('files');
   if(files.length == 0) return;
-  Array.from(files).forEach( file => {
+  Array.from(files).forEach( async file => {
   
     const reader = new FileReader();
-    let content;
+    let content = '';
     /** reads each line of the file and joins them */
-    reader.onload = (e) => {
-        const file = e.target.result;
-        const lines = file.split(/\r\n|\n/);
-        content = lines.join('\n');
-    };
+    
     reader.onerror = ( error ) => alert( error.target.error.name );
  
-    reader.readAsText( file ); 
-
-    console.log( file );
+    reader.readAsText( file );
     /** Adds the file to the viewer */
     const fileElement =  document.createElement( 'li' );
     fileElement.className = 'fileElement';
     fileElement.innerText = file.name ;
     fileElement.dataset.fileName = file.name ;
-    fileElement.dataset.fileContent = file.content ;
+    fileElement.dataset.fileContent = content ;
+    console.log(content);
+
+    reader.onload = (e) => {
+      const file = e.target.result;
+      const lines = file.split(/\r\n|\n/);
+      content = lines.join('\n');
+      fileElement.dataset.fileContent = content ;
+    };
+
 
     fileElement.onclick = () => {
+      console.log(content);
       $( '#fileContentDisplayer').text( content );
       highlight(); 
     }
