@@ -21,22 +21,18 @@ app.get( '/', ( request, response ) => {
 } )
 
 /** problems view */
+
 const problemsRouter = require( __dirname + '/routes/problems.js' );
-const problems = fs.readFileSync( __dirname + '/public/problems/problems.html', 'utf-8' )
-app.get( '/problems', ( request, response ) => {
-    response.send( nav + problems + footer );
-})
-//problemsRouter.init( nav, problems, footer );
-//app.use( problemsRouter.router );
+const problems = fs.readFileSync( __dirname + '/public/problems/problems.html', 'utf-8' );
+problemsRouter.init( footer, problems, nav );
+app.use( problemsRouter.router ); 
+
 
 /** solutions view */
 const solutionsRouter = require( __dirname + '/routes/solutions.js' );
 const solutions = fs.readFileSync( __dirname + '/public/solutions/solutions.html', 'utf-8' )
-app.get( '/solutions', ( request, response ) => {
-    response.send( nav + solutions + footer );
-})
-//solutionsRouter.init( nav, solutions, footer );
-//app.use( solutionsRouter.router );
+solutionsRouter.init( nav, solutions, footer );
+app.use( solutionsRouter.router );
 
 
 /** solution view  */

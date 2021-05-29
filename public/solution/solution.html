@@ -8,10 +8,9 @@
 </head>
  
 <body>
-    <div class="jumbotron jumbotron-fluid">
-        <div class="container">
-            <div id="main-card" class="row">
-                <div class="col-sm-3">
+    <div id="main" class="jumbotron jumbotron-fluid mx-auto" style="width: 80%;">
+            <div id="row-1" class="row nowrap" >
+                <div class="col-3">
                     <div class="description">
                         <h3 style="font-weight: bold;" id="title">Solution</h3>
                         <p style="text-align: left;">By Test name</p> <!--TODO lav det til brugeren som har uploadeds navn-->
@@ -20,22 +19,24 @@
                     </div>
                 </div>
 
-                <div id="file" class="col-sm-2">
+                <div class="col-3">
                     <h5 style="font-weight: bold;">File List</h5>
-                    <div class="files" id="fileList"></div>
+                    <div class="files" id="fileList" style="width: 100%;"></div>
                 </div>
 
-                <div id="save" class="col-sm">
+                <div class="col-6">
                     <h5 style="font-weight: bold;">Content Displayer</h5>
-                    <div class="codeBox" id="fileContentDisplayer">
+                    <div class="codeBox" id="fileContentDisplayer" style="width: 100%;">
                     </div>
                 </div>
+
+            </div>
 
                 <div class="row">
                     <div class="col-md-12">
                     <h5 style="font-weight: bold;" class="comment-h5 mt-4">Comments</h5>
                     </div>
-                    <div class="commentSection ml-4">
+                    <div class="commentSection mx-auto" style="width: 100%;">
                         <div class="form-group">
                             <textarea id="textarea" placeholder="Write your comment" rows="3" class="form-control"></textarea>
                             <button id="submitBtn" onclick="sendComment()" class="btn btn-primary mb-1">Post Comment</button>
@@ -56,12 +57,7 @@
     <script>
           const socket = io();
     </script>
-    <script>"https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
-    </script>   
-    <script src="moment.js"></script>
-    <script>
-          moment().format();
-    </script>
+
     
     <script src="/solution/solution.js"></script>
     <!-- Required Highlight.js script -->
