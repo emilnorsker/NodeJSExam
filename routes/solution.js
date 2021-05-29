@@ -1,4 +1,5 @@
 const router = require( 'express' ).Router();
+const { query } = require('express');
 const db = require( '../models/mongoDB.js' );
 const collection = 'solutions';
 
@@ -53,6 +54,33 @@ router.get("/api/solution/get/:id", async ( request , response ) => {
         response.render( '<h1> uups, looks like something went wrong </h1>' );
     }
 });
+
+router.get("/api/solution/orderBy", async ( request , response ) => {
+     try {
+        const query = {};
+        query[request.query.value] = 1; 
+        limit = 200;
+        if( request.query.limit )
+        {
+            limit = Number( request.query.limit );
+        }
+
+
+        console.log(query)
+
+        const solutions = await db.getDB().collection(collection).find({}).sort( query ).limit(limit).toArray();
+       // console.log(solutions)
+        
+        response.send( solutions );
+    }
+    catch ( error ) {
+        console.log( error );
+        response.send( { error : error } );
+    }
+});
+
+
+
 
 
 router.get( '/solution/:id', ( request, response ) => { // todo sanitise input
