@@ -21,16 +21,16 @@ const init = ( _footer, _body, _header, _io) => {
 const defineSocketBehavior = () => {
     io.on("connection", (socket) => {
         socket.on("comment", async (data) => {
-            console.log(data);
             data.uploadTime = moment(data.time).format('HH:mm');
-            console.log(data.uploadTime);
             const endpoint  = "comment" + data.solutionID;
-            io.emit(endpoint, { "comment" : data.comment, "uploadTime": data.uploadTime });
+            console.log( solutionID )
+            
+            io.emit(endpoint, { "content" : data.comment, author: 'anon', "uploadTime": data.uploadTime });
             db.getDB().collection(collection).updateOne( {_id : ObjectId(data.solutionID) }, {$push: { "comments": { 
                 "content": data.comment, 
                 "author": "anon", 
                 "uploadTime": data.uploadTime }
-            }});
+           }});
 
         socket.on("comment", (data) => {
         });
@@ -64,6 +64,7 @@ router.post( '/api/solution/:id/update', ( request , response ) => {
 /** gets the solution object from the db */
 router.get("/api/solution/get/:id", async ( request , response ) => {
     try {
+        console.log( request.params.id )
         const solutionObject = await db.getDB().collection(collection).findOne( {  _id : ObjectId(request.params.id)  } );
         response.send( solutionObject );
         
@@ -90,8 +91,13 @@ router.get("/api/solution/orderBy", async ( request , response ) => {
     }
 });
 
+router.get( '/upload/solution', ( request, response ) => { // todo sanitise input
+    const id = '<data id="solutionID" data-solution=' + request.params.id + 'data-edit=true ></data>';
+    response.send( header + id + body + footer ); //dangerous! 
+} );
+
 router.get( '/solution/:id', ( request, response ) => { // todo sanitise input
-    const id = '<data id="solutionID" data-solution=' + request.params.id + '></data>';
+    const id = '<data id="solutionID" data-solution="' + request.params.id + '" data-edit=false ></data>';
     response.send( header + id + body + footer ); //dangerous! 
 } );
 

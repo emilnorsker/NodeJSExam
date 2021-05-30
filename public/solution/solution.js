@@ -6,7 +6,7 @@ async function loadPage() {
   await getSolution();
  
   // replace with a fetch to see if token is valid?
-  allowEdit();
+  if( true ) { allowEdit(); }
   defineSocketBehavior();
 }
 
@@ -54,7 +54,6 @@ function createSolution( data ) {
   $( '#title').text( data.title );
   $( '#description').text( data.description );
   data.comments.forEach( comment => {
-    console.log(comment);
     addComment(comment);
   });
   data.files.forEach( file => {
