@@ -28,6 +28,9 @@ body{
 
 .my-img{
     width:inherit;
+    background: url(../assets/temp_pic.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .scroll-cards{

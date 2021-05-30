@@ -65,10 +65,11 @@ p{
     text-align: left;
 }
 
-.comment-h5{
-    margin-left: 7px;
-}  
-
 .save{
     margin-right: 500px;
+}
+
+.description-limit{
+    overflow-y: auto;
+    height: 35vh;
 }

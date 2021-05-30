@@ -16,24 +16,6 @@ function defineSocketBehavior() {
   });
 }
 
-function addComment( data ) {
-  let markup = 
-    `<li>
-    <div class="card border-light text-white bg-dark mb-3">
-        <div class="card-body">
-            <h6 class="text-">Martin Hansen</h6>
-            <p style="text-align: left;">${data.comment}</p>
-            <div>
-                <img src="../assets/clock.png" alt="clock">
-                <small>${data.uploadTime}</small>
-            </div>
-        </div>
-    </div>
-    </li>`
-    console.log( 'recieved comment : ', data.comment)
-    $( '#commentBox' ).append( markup );  
-}
-
 async function getSolution() {
   try {
       solutionID = $( '#solutionID' ).data('solution');
@@ -51,13 +33,17 @@ async function getSolution() {
 }
 
 function createSolution( data ) {
+  console.log(data);
   $( '#title').text( data.title );
   $( '#description').text( data.description );
+  $( '#name' ).text( data.name );
+  $( '#git' ).attr( "href", "http://" + data.git );
+  $( '#tech' ).text( data.tech );
   data.comments.forEach( comment => {
-    addComment(comment);
+    addComment( comment );
   });
   data.files.forEach( file => {
-
+    console.log(file);
     const fileElement =  document.createElement( 'li' );
     fileElement.className = 'fileElement';
     fileElement.innerText = file.filename ;
@@ -88,7 +74,7 @@ function addComment( data ) {
     `<li>
     <div class="card border-light text-white bg-dark mb-3">
         <div class="card-body">
-            <h6 class="text-">${data.author}</h6>
+            <h6 class="text-">${data.name}</h6>
             <p style="text-align: left;">${data.content}</p>
             <div>
                 <img src="../assets/clock.png" alt="clock ">
@@ -122,9 +108,9 @@ function allowEdit(){
   addFileBtn.innerText = 'Add File';
   addFileBtn.onclick = () => {uploadFileTobrowser();}
 
-  $( '#title' ).append( saveBtn );
-  $( '#main' ).append( fileUpload );
-  $( '#main' ).append( addFileBtn );
+  $( '#save' ).append( saveBtn );
+  $( '#file' ).append( fileUpload );
+  $( '#file' ).append( addFileBtn );
 
 
   /** todo :
@@ -136,6 +122,7 @@ function allowEdit(){
 
 /** sends a post to the server, which update the solution  */
 function updateSolution() {
+  console.log("yo");
   let files = [];
   if( $( '#fileList' ) ) {
     
@@ -146,7 +133,6 @@ function updateSolution() {
       } );  
 
     }
-
     const solutionObject = {
       title : $('#title').text(),
       description : $('#description').text(),
@@ -156,10 +142,10 @@ function updateSolution() {
     }
 
   $.ajax( {
-    url : `/api/solution/${ solutionID }/update`,
+    url : `/api/update/solution/${ solutionID }`,
     method: 'post',
     contentType: 'application/json',
-    data : JSON.stringify( { author : 'anon-007', solution : solutionObject } ),
+    data : JSON.stringify( {solution : solutionObject } ),
   } ).done( (data) => {
     console.log( 'successfully sent, recieved : ', data );
   } );  

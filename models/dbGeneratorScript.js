@@ -3,7 +3,7 @@ db.connect( async ( e ) => {
     console.log("Connected...");
     db.getDB().collection("solutions").deleteMany({});
     console.log("Removed All Documents");
-    db.getDB().collection("solutions").insertMany(solutions);
+    //db.getDB().collection("solutions").insertMany(solutions);
 
     db.getDB().collection("problems").deleteMany({});
     console.log("Removed All Documents");

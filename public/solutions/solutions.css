@@ -31,3 +31,14 @@ p{
     margin-bottom: 2vh;
     text-align: center;
   }
+
+.modal-content{
+   background-color: rgb(36, 36, 36);
+}
+
+.my-img{
+    width:inherit;
+    background: url(../assets/temp_pic.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}

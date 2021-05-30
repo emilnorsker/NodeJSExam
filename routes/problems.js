@@ -21,15 +21,6 @@ router.post( '/api/problem/add', ( request , response ) => {
     );
 });
 
-router.post( '/api/solution/:id/update', ( request , response ) => {
-    console.log( 'id :',  request.params.id );
-    console.log( 'ajax :',  request.body );
-    db.getDB().collection( collection ).updateOne( { id : Number(request.params.id) },  
-        {$set : request.body.solution}
-    );
-    response.send( 'awesome' );
-});
-
 router.get("/api/problems/search", async ( request , response ) => {
         try {
            const problems = await db.getDB().collection(collection).find({

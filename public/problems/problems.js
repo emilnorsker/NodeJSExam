@@ -39,7 +39,7 @@ function createHTML( data ) {
         <div class="card text-white bg-dark mx-auto">
             <div class="row no-gutters">
                 <div class="col-sm-4 img" style="background: #868e96;">
-                    <img src="${element.img}" alt="<a href="/" style="color: white;"  class="text-decoration-none">Solution Hub</a>" class="my-img h-100">
+                    <img src="${element.img}" alt="" class="my-img h-100">
                 </div>
                 <div class="col-sm-5">
                     <div class="card-body">
