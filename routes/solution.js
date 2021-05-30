@@ -21,16 +21,15 @@ const init = ( _footer, _body, _header, _io) => {
 const defineSocketBehavior = () => {
     io.on("connection", (socket) => {
         socket.on("comment", async (data) => {
-            console.log(data);
             data.uploadTime = moment(data.time).format('HH:mm');
-            console.log(data.uploadTime);
             const endpoint  = "comment" + data.solutionID;
-            io.emit(endpoint, { "comment" : data.comment, "uploadTime": data.uploadTime });
+            
+            io.emit(endpoint, { "content" : data.comment, author: 'anon', "uploadTime": data.uploadTime });
             db.getDB().collection(collection).updateOne( {_id : ObjectId(data.solutionID) }, {$push: { "comments": { 
                 "content": data.comment, 
                 "author": "anon", 
                 "uploadTime": data.uploadTime }
-            }});
+           }});
 
         socket.on("comment", (data) => {
         });

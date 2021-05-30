@@ -54,7 +54,6 @@ function createSolution( data ) {
   $( '#title').text( data.title );
   $( '#description').text( data.description );
   data.comments.forEach( comment => {
-    console.log(comment);
     addComment(comment);
   });
   data.files.forEach( file => {
