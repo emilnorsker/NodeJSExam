@@ -63,7 +63,7 @@ router.get("/api/problems/orderBy", async ( request , response ) => {
 });
 
 router.get( '/problems', ( request, response ) => {
-    response.send( nav + body + footer );
+    response.send( header + body + footer );
 })
 
 

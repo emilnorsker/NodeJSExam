@@ -39,14 +39,13 @@ function createHTML( data ) {
         <div class="card text-white bg-dark mx-auto">
             <div class="row no-gutters">
                 <div class="col-sm-4 img" style="background: #868e96;">
-                    <img src="/assets/vikiLearn.png" class="my-img h-100">
+                    <img src="${element.img}" alt="<a href="/" style="color: white;"  class="text-decoration-none">Solution Hub</a>" class="my-img h-100">
                 </div>
                 <div class="col-sm-5">
                     <div class="card-body">
-                        <h5 class="card-title">Viki Learn</h5>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                            lacinia elit lorem</p>
-                        <a href="/solutions" class="btn btn-primary">Go to Solutions</a>
+                        <h5 class="card-title">${element.title}</h5>
+                        <p class="card-text">${element.description}</p>
+                        <a href="/solutions/${element._id}" class="btn btn-primary">Go to Solutions</a>
                     </div>
                 </div>
             </div>

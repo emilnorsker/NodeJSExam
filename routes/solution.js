@@ -1,4 +1,5 @@
 const router = require( 'express' ).Router();
+const { ObjectId } = require('bson');
 const { query } = require('express');
 const db = require( '../models/mongoDB.js' );
 const collection = 'solutions';
@@ -37,7 +38,7 @@ router.post( '/api/solution/add', ( request , response ) => {
 /** upate */
 router.post( '/api/solution/:id/update', ( request , response ) => {
     try {
-    db.getDB().collection( collection ).updateOne( { id : Number(request.params.id) },  
+    db.getDB().collection( collection ).updateOne( { id : request.params.id.toString() },  
         {$set : request.body.solution}
     );
     response.send( 'Accepted' );
@@ -50,14 +51,15 @@ router.post( '/api/solution/:id/update', ( request , response ) => {
 /** gets the solution object from the db */
 router.get("/api/solution/get/:id", async ( request , response ) => {
     try {
-        const solutionObject = await db.getDB().collection(collection).findOne( {  id : Number( request.params.id ) } );
+        const solutionObject = await db.getDB().collection(collection).findOne( {  _id : ObjectId(request.params.id)  } );
         response.send( solutionObject );
+        
     } catch ( error ) {
         console.log( error );
         response.render( '<h1> uups, looks like something went wrong </h1>' );
     }
 });
-
+/** order by given field  */
 router.get("/api/solution/orderBy", async ( request , response ) => {
      try {
         const query = {};
@@ -76,7 +78,8 @@ router.get("/api/solution/orderBy", async ( request , response ) => {
 });
 
 router.get( '/solution/:id', ( request, response ) => { // todo sanitise input
-    response.send( header + '<data id="solutionID" data-solution=' + request.params.id + '></data>' + body + footer ); //dangerous! 
+    const id = '<data id="solutionID" data-solution=' + request.params.id + '></data>';
+    response.send( header + id + body + footer ); //dangerous! 
 } );
 
 

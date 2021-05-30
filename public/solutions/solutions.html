@@ -3,13 +3,13 @@
 
 <head>
     <link rel="stylesheet" href="/solutions/solutions.css">
-    <script src="solutions/solutions.js"></script>
+    <script src="/solutions/solutions.js"></script>
 </head>
 
 <body>
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
-            <h3 style="font-weight: bold; text-align: center;">Solutions for Problem X</h3>
+            <h3 id='problem-title' style="font-weight: bold; text-align: center;">Solutions for Problem </h3>
             <!-- TODO make it so it says the right problem, same for the <p> tag underneath-->
             <p>Here you can check out the solutions for the chosen problem. Gather inspiration for
                 your own project, help other people in the Solution Hub Community or see how other people tackled the
@@ -26,49 +26,7 @@
                     <button class="btn btn-primary" type="submit">Upload Solution</button>
                 </form>
             </div>
-            <div class="row mx-auto my-auto">
-                <div class="col-md-4">
-                    <div class="card text-white bg-dark mb-3">
-                        <img src="/assets/vikiLearn.png" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">Viki Learn</h5>
-                            <p class="card-text">Language game developed to enourage learning of new languages through
-                                gamified elements. It included Levels, resources, building, story, quizzes, character
-                                creation and more. </p>
-                            <p class="card-text">Solution By: Mike Wazowski</p>
-                            <a href="/solution/1" class="btn btn-primary">Go to Solution</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card text-white bg-dark mb-3" style="width: auto;">
-                        <img src="/assets/progExam.jpg" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">Exam Project</h5>
-                            <p class="card-text">Spring MVC website made for an exam project to showcase the skills
-                                learned throughout the semester, with focus on a asynchronus website that requires no
-                                page reloads.</p>
-                            <p class="card-text">Solution by: James P. Sullivan </p>
-                            <a href="/solution/1" class="btn btn-primary">Go to Solution</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card text-white bg-dark mb-3" style="width: auto;">
-                        <img src="/assets/hercules.jpg" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">Herkules Nedrivning</h5>
-                            <p class="card-text">A project developed for a demolition company that needed a platform to
-                                keep track of cases, employees, see avaliable tools and calculate costs of new cases.
-                            </p>
-                            <p class="card-text">Solution by: Henry J. Waternoose </p>
-                            <a href="/solution/1" class="btn btn-primary">Go to Solution</a>
-                        </div>
-                    </div>
-                </div>
-
+            <div id="solution-displayer" class="row mx-auto my-auto">
             </div>
         </div>
     </div>
