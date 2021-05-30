@@ -21,7 +21,6 @@ app.get( '/', ( request, response ) => {
 } )
 
 /** problems view */
-
 const problemsRouter = require( __dirname + '/routes/problems.js' );
 const problems = fs.readFileSync( __dirname + '/public/problems/problems.html', 'utf-8' );
 problemsRouter.init( footer, problems, nav );
