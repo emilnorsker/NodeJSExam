@@ -35,7 +35,7 @@ function createHTML( data ) {
     const item = `
       <div class="col-md-4" href= "/solution/${element._id}">
         <div class="card text-white bg-dark mb-3" style="width: auto;">
-          <img src="${element.image}" class="card-img-top">
+          <a href="/solution/${element._id}"> <img  src="${element.image}" class="card-img-top"> </a>
           <div class="card-body">
             <h5 class="card-title">${element.title}</h5>
             <p class="card-tex">${element.description}</p>

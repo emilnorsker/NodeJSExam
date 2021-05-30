@@ -89,8 +89,8 @@ function addComment( data ) {
     `<li>
     <div class="card border-light text-white bg-dark mb-3">
         <div class="card-body">
-            <h6 class="text-">Martin Hansen</h6>
-            <p style="text-align: left;">${data.comment}</p>
+            <h6 class="text-">${data.author}</h6>
+            <p style="text-align: left;">${data.content}</p>
             <div>
                 <img src="../assets/clock.png" alt="clock ">
                 <small>${data.uploadTime}</small>
