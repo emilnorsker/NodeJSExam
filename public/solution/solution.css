@@ -56,3 +56,19 @@ td.hljs-ln-code {
 p{
     font-size: 16px;
 }
+.card{
+    width: 1111px;
+}
+.card-body{
+    max-width: 1111px;
+    background-color: rgb(49, 50, 51);
+    text-align: left;
+}
+
+.comment-h5{
+    margin-left: 7px;
+}  
+
+.save{
+    margin-right: 500px;
+}
