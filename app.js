@@ -30,7 +30,7 @@ app.use( problemsRouter.router );
 /** solutions view */
 const solutionsRouter = require( __dirname + '/routes/solutions.js' );
 const solutions = fs.readFileSync( __dirname + '/public/solutions/solutions.html', 'utf-8' )
-solutionsRouter.init( nav, solutions, footer );
+solutionsRouter.init( footer, solutions,  nav );
 app.use( solutionsRouter.router );
 
 

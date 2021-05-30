@@ -4,14 +4,30 @@ db.connect( async ( e ) => {
     db.getDB().collection("solutions").deleteMany({});
     console.log("Removed All Documents");
     db.getDB().collection("solutions").insertMany(solutions);
+
+    db.getDB().collection("problems").deleteMany({});
+    console.log("Removed All Documents");
+    db.getDB().collection("problems").insertMany(problems);
     console.log("Inserted New");
+    
     const obj = await db.getDB().collection("solutions").findOne({title: 'Viki Learn'});
     console.log(obj);
 });
 
+
+
+const problems = [ {
+    title :'fake problem',
+    description : 'idk how to print to console. very hard. pls help',
+    img : '',
+    solutions : []
+},
+];
+
 const solutions = [  {
-        title : 'Viki Learn',
-        id : 1,
+        problem : 'fakeID',
+        title :'Viki Learn',
+        //_id : '1',
         description: 'Spring MVC website made for an exam project to showcase the skills learned throughout the semester, with focus on a asynchronus website that requires no page reloads.',
         uploadDate : new Date("2021-04-08"),
         imgPath : '',
@@ -22,8 +38,8 @@ const solutions = [  {
         comments: [ {author: "me", content : "awesome conteqeqweqwent, <!>qweqweshoulqweqwelog() <!>"} ],
         files : [ { filename : 'main.js', content: "console.log('hello world') \n//comment should be grey" }, { filename : 'notMain.js', content: "<script> alert(1) </script>" } ]
     }, {
-        title : 'ATikil0p8 Learn',
-        id : 1,
+        problem : 'fakeID',
+        title :'ATikil0p8 Learn',
         description: 'Language game developed to enourage learning of new languages through gamified elements. It included Levels, resources, building, story, quizzes, character creation and more. ',
         uploadDate : new Date("2021-04-08"),
 
@@ -34,8 +50,8 @@ const solutions = [  {
         comments: [ {author: "me", content : "awesome content, <!> // this code should be highligted \n console.log() <!>"} ],
         files : [ { filename : 'main.js', content: "console.log('hello world') \n//comment should be grey" }, { filename : 'notMain.js', content: "<script> alert(1) </script>" } ]
     }, {
-    title : 'BTiki Learn',
-    id : 1,
+    problem_id : '60b240ca31055b128815b1e3',
+        title :'BTiki Learn',
     description: 'Language game developed to enourage learning of new languages through gamified elements. It included Levels, resources, building, story, quizzes, character creation and more. ',
     uploadDate : new Date("2021-04-08"),
     techUsed: 'html, js',
@@ -45,8 +61,8 @@ const solutions = [  {
     comments: [ {author: "me", content : "awesome content, <!> // this code should be highligted \n console.log() <!>"} ],
     files : [ { filename : 'main.js', content: "console.log('hello world') \n//comment should be grey" }, { filename : 'notMain.js', content: "<script> alert(1) </script>" } ]
 } ,{
-    title : 'C Vkijjyyki Learn',
-    id : 1,
+    problem_id : '60b240ca31055b128815b1e3',
+        title :'C Vkijjyyki Learn',
     description: 'Spring MVC website made for an exam project to showcase the skills learned throughout the semester, with focus on a asynchronus website that requires no page reloads.',
     uploadDate : new Date("2021-04-08"),
 
@@ -57,8 +73,8 @@ const solutions = [  {
     comments: [ {author: "me", content : "awesome conteqeqweqwent, <!>qweqweshoulqweqwelog() <!>"} ],
     files : [ { filename : 'main.js', content: "console.log('hello world') \n//comment should be grey" }, { filename : 'notMain.js', content: "<script> alert(1) </script>" } ]
 }, {
-    title : 'Tikytrji Learn',
-    id : 1,
+    problem_id : '60b240ca31055b128815b1e3',
+        title :'Tikytrji Learn',
     description: 'Language game developed to enourage learning of new languages through gamified elements. It included Levels, resources, building, story, quizzes, character creation and more. ',
     uploadDate : new Date("2021-04-08"),
     imgPath : '123',
@@ -69,8 +85,8 @@ const solutions = [  {
     comments: [ {author: "me", content : "awesome content, <!> // this code should be highligted \n console.log() <!>"} ],
     files : [ { filename : 'main.js', content: "console.log('hello world') \n//comment should be grey" }, { filename : 'notMain.js', content: "<script> alert(1) </script>" } ]
 }, {
-    title : 'Tikqwqeisfdgq Learn',
-    id : 1,
+    problem : 'fakeID',
+        title :'Tikqwqeisfdgq Learn',
     description: 'Language game developed to enourage learning of new languages through gamified elements. It included Levels, resources, building, story, quizzes, character creation and more. ',
     uploadDate : new Date("2021-04-08"),
     imgPath : '123',
@@ -81,8 +97,8 @@ const solutions = [  {
     comments: [ {author: "me", content : "awesome content, <!> // this code should be highligted \n console.log() <!>"} ],
     files : [ { filename : 'main.js', content: "console.log('hello world') \n//comment should be grey" }, { filename : 'notMain.js', content: "<script> alert(1) </script>" } ]
     },{
-        title : 'Vki12312ki Learn',
-        id : 1,
+        problem : 'fakeID',
+        title :'Vki12312ki Learn',
         description: 'Spring MVC website made for an exam project to showcase the skills learned throughout the semester, with focus on a asynchronus website that requires no page reloads.',
         uploadDate : new Date("2021-04-08"),
         imgPath : '',
@@ -93,8 +109,8 @@ const solutions = [  {
         comments: [ {author: "me", content : "awesome conteqeqweqwent, <!>qweqweshoulqweqwelog() <!>"} ],
         files : [ { filename : 'main.js', content: "console.log('hello world') \n//comment should be grey" }, { filename : 'notMain.js', content: "<script> alert(1) </script>" } ]
     }, {
-        title : 'Tiki Learn',
-        id : 1,
+        problem : 'fakeID',
+        title :'Tiki Learn',
         description: 'Language game developed to enourage learning of new languages through gamified elements. It included Levels, resources, building, story, quizzes, character creation and more. ',
         uploadDate : new Date("2021-04-08"),
         imgPath : '123',
@@ -105,8 +121,8 @@ const solutions = [  {
         comments: [ {author: "me", content : "awesome content, <!> // this code should be highligted \n console.log() <!>"} ],
         files : [ { filename : 'main.js', content: "console.log('hello world') \n//comment should be grey" }, { filename : 'notMain.js', content: "<script> alert(1) </script>" } ]
     }, {
-    title : 'Tik123i Learn',
-    id : 1,
+    problem : 'fakeID',
+        title :'Tik123i Learn',
     description: 'Language game developed to enourage learning of new languages through gamified elements. It included Levels, resources, building, story, quizzes, character creation and more. ',
     uploadDate : new Date("2021-04-08"),
     imgPath : '123',
