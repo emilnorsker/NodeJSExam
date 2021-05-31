@@ -21,6 +21,19 @@ router.post( '/api/problem/add', ( request , response ) => {
     );
 });
 
+
+router.post( '/upload/problem/', async (request, response) => {
+    console.log( request.body );
+    const check = await db.getDB().collection( collection ).find( request.body.problem ).toArray().length
+    if ( check > 0 ){
+         response.status(500).send("Error: This problem already exists, change parameters" ); 
+    }
+    await db.getDB().collection( collection ).insertOne( request.body.problem );
+    const problem = await db.getDB().collection( collection ).findOne( request.body.problem );
+    console.log(problem);
+    response.send("/solutions/" + problem._id);
+});
+
 router.get("/api/problems/search", async ( request , response ) => {
         try {
            const problems = await db.getDB().collection(collection).find({

@@ -17,25 +17,73 @@
 
         <hr class="divider">
 
-        <div class="container text-center my-3">
-            <h2> Problem List </h2>
+        <div class="center-button">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#exampleModal">
+                Upload Problem
+            </button>
         </div>
-
-        <!-- Replace with actual search function -->
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Upload Problem</h5>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" class="form-control" id="name" placeholder="Enter your Name..."
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <label for="title">Title</label>
+                                <input type="text" class="form-control" id="title" placeholder="Enter a Title..."
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Description</label>
+                                <textarea class="form-control" id="description" rows="3"
+                                    placeholder="Enter a Description..." required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="image">Image</label>
+                                <input type="text" class="form-control-file" id="image"
+                                    placeholder="Insert an image link...">
+                            </div>
+                            <div class="form-group">
+                                <label for="tech">Tech Used</label>
+                                <input type="text" class="form-control-file" id="tech" placeholder="Enter Tech used...">
+                            </div>
+                            <div class="form-group">
+                                <label for="git">Git Link</label>
+                                <input type="text" class="form-control-file" id="git"
+                                    placeholder="Insert your Git Link...">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" onclick="uploadProblem()">Upload</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Replace with actual search function 
         <div class="search" style="align-content: center;">
             <form action="/problems">
-                <input type="text" placeholder="Search..">
-                <button type="submit">
+                <input type="text" id="search" onkeyup="search()" placeholder="Search..">
+                <button onclick="search()" type="submit">
                     <img src="../assets/search.png" alt="search icon" class="search-icon">
                 </button>
             </form>
         </div>
-
-        <div class="scroll-cards">
+        -->
             <div id="problems-displayer" class="row row-cols-2">
                 <!--  items from db displayed here    -->
             </div>
-        </div>
+        
 
 
     </div>

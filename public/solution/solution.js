@@ -37,7 +37,7 @@ function createSolution( data ) {
   $( '#title').text( data.title );
   $( '#description').text( data.description );
   $( '#name' ).text( data.name );
-  $( '#git' ).attr( "href", "http://" + data.git );
+  $( '#git' ).attr( "href", data.git );
   $( '#tech' ).text( data.tech );
   data.comments.forEach( comment => {
     addComment( comment );
