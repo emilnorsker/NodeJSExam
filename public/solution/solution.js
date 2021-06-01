@@ -89,7 +89,7 @@ function addComment( data ) {
 
 /** generates buttons and tools for editing a solution */
 function allowEdit(){
-
+  
   const saveBtn = document.createElement( 'button' );
   saveBtn.className = 'btn-primary';
   saveBtn.innerText = 'Save';

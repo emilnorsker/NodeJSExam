@@ -36,8 +36,7 @@ function uploadProblem() {
     title : $( '#title' ).val(),
     description : $( '#description' ).val(),
     image : $( '#image').val(), /*Array.from( $( '#image' ).prop( 'files' ) )[0]*/
-    tech : $( '#tech' ).val(),
-    git : $( '#git' ).val()
+    tech : $( '#tech' ).val()
   }  
   
   $.ajax({
@@ -71,6 +70,8 @@ function createHTML( data ) {
                 <p class="card-text">${element.description}</p>
                 <p class="card-text" style="font-weight: bold;">Solution By</p>
                 <p class="card-text">${element.name} </p>
+                <p class="card-text" style="font-weight: bold;">Tech Used</p>
+                <p class="card-text">${element.tech} </p>
                 <a href="/solutions/${element._id}" class="btn btn-primary mb-3">See Solutions</a>
             </div>
         </div>
