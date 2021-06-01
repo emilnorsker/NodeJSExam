@@ -1,0 +1,1 @@
+web : export PORT=80 ; sudo systemctl start mongod; npm run start
