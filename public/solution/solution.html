@@ -11,21 +11,30 @@
     <div id="main" class="jumbotron jumbotron-fluid mx-auto" style="width: 80%;">
             <div id="row-1" class="row nowrap" >
                 <div class="col-3">
-                    <div class="description">
-                        <h3 style="font-weight: bold;" id="title">Solution</h3>
-                        <p style="text-align: left;">By Test name</p> <!--TODO lav det til brugeren som har uploadeds navn-->
-                        <h5 style="font-weight: bold;">Description</h5>
-                        <h6 style="font-weight: bold;" id="description"></h6>
+                    <div class="desc">
+                        <h3 id="title"></h3>
+                        <h4 class="mt-3">Author</h4>
+                        <h5 class="font-weight-light" style="text-align: left;" id="name"></h5>
+                        <hr class="my-4">
+                        <h4 class="mt-2">Description</h4>
+                        <h6 class="description-limit" id="description"></h6>
+                        <hr class="my-4">
+                        <h5 class="mt-3">Technologies Used</h5>
+                        <h6 id="tech"></h6>
+                        <hr class="my-4">
+                        <h5 class="mt-3">Github Link</h5>
+                        <a class="btn btn-primary" id="git" target="_blank">Github Link</a>
                     </div>
                 </div>
 
-                <div class="col-3">
-                    <h5 style="font-weight: bold;">File List</h5>
+                <div id="file" class="col-3">
+                    <h5 class="marg">File List</h5>
                     <div class="files" id="fileList" style="width: 100%;"></div>
                 </div>
-
-                <div class="col-6">
-                    <h5 style="font-weight: bold;">Content Displayer</h5>
+                
+                <div id="save" class="col-6">
+                    <h5 style="float: left;">Content Displayer</h5>
+                    <a class="btn btn-primary mb-1" style="float: right;" href="/problems">Back to Problems</a>
                     <div class="codeBox" id="fileContentDisplayer" style="width: 100%;">
                     </div>
                 </div>
@@ -34,11 +43,11 @@
 
                 <div class="row">
                     <div class="col-md-12">
-                    <h5 style="font-weight: bold;" class="comment-h5 mt-4">Comments</h5>
+                    <h5 class="mt-5">Comments</h5>
                     </div>
                     <div class="commentSection mx-auto" style="width: 100%;">
-                        <div class="form-group">
-                            <textarea id="textarea" placeholder="Write your comment" rows="3" class="form-control"></textarea>
+                        <div class="form-group ml-3">
+                            <textarea id="textarea" placeholder="Write your comment" rows="3" class="form-control" style="max-width: 73vw;"></textarea>
                             <button id="submitBtn" onclick="sendComment()" class="btn btn-primary mb-1">Post Comment</button>
                             <div class="row">
                             <div class="col-md-12 mt-2">

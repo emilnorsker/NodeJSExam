@@ -65,10 +65,28 @@ p{
     text-align: left;
 }
 
-.comment-h5{
-    margin-left: 7px;
-}  
-
 .save{
     margin-right: 500px;
+}
+
+.description-limit{
+    overflow-y: auto;
+    max-height: 35vh;
+}
+
+.btn{
+    transition: 0.3s;
+}
+  
+.btn:hover{
+    background-color: rgb(40, 113, 231);
+    border-radius: 10px;
+}
+
+.marg{
+    margin-bottom: 17px;
+}
+
+.my-4{
+    background-color: white;
 }

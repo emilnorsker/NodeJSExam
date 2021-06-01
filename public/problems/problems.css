@@ -12,28 +12,42 @@ body{
     overflow-x: hidden;
 }
 
-.card-text{
-    text-align: left;
+.center-button{
+    margin-bottom: 5vh;
+    text-align:center;
 }
 
 .card{
-    overflow-x: hidden;
-    width: 45vw;
-    border-radius: 5px;
-    border-style: solid;
-    border-width: 2px;
-    border-color: rgb(98, 98, 98);
-    margin-bottom: 2vh;
+    max-height: 60vh;
+    max-width: 17vw;
+}
+
+.col-md-4{
+    max-width: 20vw;
+    margin-left: 5vw;
+    margin-right: 5;
+}
+
+.center-button{
+    margin-bottom: 5vh;
+    text-align:center;
+}
+
+.card .card-body {
+    overflow-y: auto;
+}
+
+.card-body{
+    align-items: center;
+    text-align: center;
 }
 
 .my-img{
     width:inherit;
-}
-
-.scroll-cards{
-    overflow-x: hidden;
-    overflow-y: auto;
-    height: 75vh;
+    background: url(../assets/temp_pic.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    max-height: 20vh;
 }
 
 /* width */
@@ -50,3 +64,20 @@ body::-webkit-scrollbar {
     margin-bottom: 2vh;
     text-align: center;
   }
+
+.modal-content{
+    background-color: rgb(36, 36, 36);
+}
+
+.bg-text{
+    font-size: 18px;
+}
+
+.btn{
+    transition: 0.3s;
+  }
+  
+.btn:hover{
+    background-color: rgb(40, 113, 231);
+    border-radius: 10px;
+}

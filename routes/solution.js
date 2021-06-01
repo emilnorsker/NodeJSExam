@@ -2,6 +2,7 @@ const router = require( 'express' ).Router();
 const { ObjectId } = require('bson');
 const { query } = require('express');
 const moment = require( 'moment' );
+const { Db } = require('mongodb');
 const db = require( '../models/mongoDB.js' );
 const collection = 'solutions';
 
@@ -23,17 +24,14 @@ const defineSocketBehavior = () => {
         socket.on("comment", async (data) => {
             data.uploadTime = moment(data.time).format('HH:mm');
             const endpoint  = "comment" + data.solutionID;
-            console.log( solutionID )
             
-            io.emit(endpoint, { "content" : data.comment, author: 'anon', "uploadTime": data.uploadTime });
+            io.emit(endpoint, { "content" : data.comment, name: 'anon', "uploadTime": data.uploadTime });
             db.getDB().collection(collection).updateOne( {_id : ObjectId(data.solutionID) }, {$push: { "comments": { 
                 "content": data.comment, 
-                "author": "anon", 
+                "name": "anon", 
                 "uploadTime": data.uploadTime }
            }});
 
-        socket.on("comment", (data) => {
-        });
         socket.on("disconnect", () => {
         console.log("A socket disconnect");
             console.log("A socket disconnect");
@@ -48,10 +46,11 @@ router.post( '/api/solution/add', ( request , response ) => {
     );
 });
 
-/** upate */
-router.post( '/api/solution/:id/update', ( request , response ) => {
+/** update */
+router.post( '/api/update/solution/:id/', ( request , response ) => {
+    console.log(request.body);
     try {
-    db.getDB().collection( collection ).updateOne( { id : request.params.id.toString() },  
+    db.getDB().collection( collection ).updateOne( { _id : ObjectId(request.params.id)},  
         {$set : request.body.solution}
     );
     response.send( 'Accepted' );
@@ -64,9 +63,10 @@ router.post( '/api/solution/:id/update', ( request , response ) => {
 /** gets the solution object from the db */
 router.get("/api/solution/get/:id", async ( request , response ) => {
     try {
-        console.log( request.params.id )
         const solutionObject = await db.getDB().collection(collection).findOne( {  _id : ObjectId(request.params.id)  } );
+        console.log( 'sending ', solutionObject );
         response.send( solutionObject );
+
         
     } catch ( error ) {
         console.log( error );
@@ -91,16 +91,22 @@ router.get("/api/solution/orderBy", async ( request , response ) => {
     }
 });
 
-router.get( '/upload/solution', ( request, response ) => { // todo sanitise input
-    const id = '<data id="solutionID" data-solution=' + request.params.id + 'data-edit=true ></data>';
-    response.send( header + id + body + footer ); //dangerous! 
-} );
+router.post( '/upload/solution/', async (request, response) => {
+    console.log( request.body );
+    const check = await db.getDB().collection( collection ).find( request.body.solution ).toArray().length
+    if ( check > 0 ){
+         response.status(500).send("Error: This solution already exists, change parameters" ); 
+    }
+    await db.getDB().collection( collection ).insertOne( request.body.solution );
+    const solution = await db.getDB().collection( collection ).findOne( request.body.solution );
+    console.log(solution);
+    response.send("/solution/" + solution._id);
+});
 
 router.get( '/solution/:id', ( request, response ) => { // todo sanitise input
-    const id = '<data id="solutionID" data-solution="' + request.params.id + '" data-edit=false ></data>';
+    const id = '<data id="solutionID" data-solution=' + request.params.id + '></data>';
     response.send( header + id + body + footer ); //dangerous! 
 } );
-
 
 module.exports = {
     router, init
