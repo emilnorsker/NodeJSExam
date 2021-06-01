@@ -107,12 +107,16 @@ function allowEdit(){
     addFileBtn.className = 'btn-primary';
     addFileBtn.innerText = 'Add File';
     addFileBtn.onclick = () => { uploadFileTobrowser(); }
+
+    $( '#title').attr( 'contenteditable', true);
+    $( '#description').attr( 'contenteditable', true);
+    $( '#name').attr( 'contenteditable', true);
+    $( '#tech').attr( 'contenteditable', true);
     
     $( '#save' ).append( saveBtn );
     $( '#file' ).append( fileUpload );
     $( '#file' ).append( addFileBtn );
     editEnabled = true;
- 
   }
 }
 
@@ -130,6 +134,8 @@ function updateSolution() {
     const solutionObject = {
       title : $( '#title' ).text(),
       description : $( '#description' ).text(),
+      name : $( '#name' ).text(),
+      tech : $( '#tech' ).text(),
       lastEditDate :  Date.now(),
       files : files
     }
