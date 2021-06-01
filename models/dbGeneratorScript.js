@@ -7,7 +7,7 @@ db.connect( async ( e ) => {
 
     db.getDB().collection("problems").deleteMany({});
     console.log("Removed All Documents");
-    db.getDB().collection("problems").insertMany(problems);
+    //db.getDB().collection("problems").insertMany(problems);
     console.log("Inserted New");
     
     const obj = await db.getDB().collection("solutions").findOne({title: 'Viki Learn'});
