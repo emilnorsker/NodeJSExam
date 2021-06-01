@@ -42,6 +42,11 @@ app.use( solutionRouter.router );
 
 /** server */
 var Server;
+
+Server = server.listen( process.env.PORT || 8080, ( error ) => {
+    if ( error ) { console.log( error ); }
+    console.log( 'Server is running on port', Server.address().port );
+    /*
 db.connect( ( error ) => { 
     if( error ){
         console.log( 'unable to connect to database, error : ', error );
@@ -57,3 +62,4 @@ db.connect( ( error ) => {
 
 
 
+*/
