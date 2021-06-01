@@ -71,7 +71,7 @@ function createHTML( data ) {
                 <p class="card-text">${element.description}</p>
                 <p class="card-text" style="font-weight: bold;">Solution By</p>
                 <p class="card-text">${element.name} </p>
-                <a href="/solution/${element._id}" class="btn btn-primary">Go to Solution</a>
+                <a href="/solutions/${element._id}" class="btn btn-primary mb-3">See Solutions</a>
             </div>
         </div>
     </div>

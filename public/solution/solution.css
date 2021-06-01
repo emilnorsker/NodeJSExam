@@ -73,3 +73,20 @@ p{
     overflow-y: auto;
     max-height: 35vh;
 }
+
+.btn{
+    transition: 0.3s;
+}
+  
+.btn:hover{
+    background-color: rgb(40, 113, 231);
+    border-radius: 10px;
+}
+
+.marg{
+    margin-bottom: 17px;
+}
+
+.my-4{
+    background-color: white;
+}

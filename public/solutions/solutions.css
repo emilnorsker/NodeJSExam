@@ -19,8 +19,8 @@ p{
 
 .col-md-4{
     max-width: 20vw;
-    margin-left: 5vw;
-    margin-right: 5;
+    margin-left: 7vw;
+    margin-right: 5vw;
 }
 
 .center-button{
@@ -53,4 +53,13 @@ p{
     background-size: cover;
     background-repeat: no-repeat;
     max-height: 20vh;
+}
+
+.btn{
+    transition: 0.3s;
+  }
+  
+.btn:hover{
+    background-color: rgb(40, 113, 231);
+    border-radius: 10px;
 }

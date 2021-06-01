@@ -40,7 +40,7 @@ function createHTML( data ) {
             <h5 class="card-title">${element.title}</h5>
             <p class="card-tex">${element.description}</p>
             <p class="card-text">${element.techUsed} </p>
-            <a href="/solution/${element._id}" class="btn btn-primary">See Solution</a>
+            <a href="/solution/${element._id}" class="btn btn-primary mb-3">See Solution</a>
           </div>
         </div>
       </div>

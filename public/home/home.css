@@ -56,3 +56,16 @@
 .card .card-body {
     overflow-y: auto;
 }
+
+.bg-text{
+    font-size: 18px;
+}
+
+.btn{
+    transition: 0.3s;
+  }
+  
+.btn:hover{
+    background-color: rgb(40, 113, 231);
+    border-radius: 10px;
+}
