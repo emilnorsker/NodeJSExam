@@ -84,31 +84,36 @@ function addComment( data ) {
     $( '#commentBox' ).append( markup );  
 }
 
+var editEnabled = false;
 
 /** generates buttons and tools for editing a solution */
 function allowEdit(){
  
+  if( !editEnabled ) {
+ 
+    const saveBtn = document.createElement( 'button' );
+    saveBtn.className = 'btn-primary';
+    saveBtn.innerText = 'Save';
+    saveBtn.style.float = 'right';
 
-  const saveBtn = document.createElement( 'button' );
-  saveBtn.className = 'btn-primary';
-  saveBtn.innerText = 'Save';
-  saveBtn.style.float = 'right';
+    saveBtn.onclick = () => { updateSolution() };
 
-  saveBtn.onclick = () => { updateSolution() };
+    const fileUpload = document.createElement( 'input' );
+    fileUpload.type = 'file';
+    fileUpload.id = 'fileUploadBtn';
+    fileUpload.multiple = true;
 
-  const fileUpload = document.createElement( 'input' );
-  fileUpload.type = 'file';
-  fileUpload.id = 'fileUploadBtn';
-  fileUpload.multiple = true;
-
-  const addFileBtn = document.createElement( 'button' );
-  addFileBtn.className = 'btn-primary';
-  addFileBtn.innerText = 'Add File';
-  addFileBtn.onclick = () => { uploadFileTobrowser(); }
-  
-  $( '#save' ).append( saveBtn );
-  $( '#file' ).append( fileUpload );
-  $( '#file' ).append( addFileBtn );
+    const addFileBtn = document.createElement( 'button' );
+    addFileBtn.className = 'btn-primary';
+    addFileBtn.innerText = 'Add File';
+    addFileBtn.onclick = () => { uploadFileTobrowser(); }
+    
+    $( '#save' ).append( saveBtn );
+    $( '#file' ).append( fileUpload );
+    $( '#file' ).append( addFileBtn );
+    editEnabled = true;
+ 
+  }
 }
 
 /** sends a post to the server, which update the solution  */
