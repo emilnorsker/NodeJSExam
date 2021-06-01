@@ -137,7 +137,6 @@ function updateSolution() {
       title : $('#title').text(),
       description : $('#description').text(),
       lastEditDate :  Date.now(),
-      image : '',
       files : files
     }
 
