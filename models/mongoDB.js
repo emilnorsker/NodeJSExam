@@ -1,7 +1,7 @@
 const MongoClient = require( 'mongodb' ).MongoClient;
 const ObjectId = require( 'mongodb' ).ObjectID;
 const dbName = "solutionDB"
-const url = 'mongodb://localhost:27017/'+dbName;
+const uri = process.env.MONGODB_URI;
 const options = { 
     useNewUrlParser: true,
     useUnifiedTopology: true, 
@@ -17,7 +17,7 @@ const connect = (callback) => {
         callback();
     }
     else {
-        MongoClient.connect( url, options, (error, client )=> {
+        MongoClient.connect( uri, options, (error, client )=> {
             
             if( error ){
                 //console.log('here')
