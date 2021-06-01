@@ -33,6 +33,7 @@ async function getSolution() {
 }
 
 function createSolution( data ) {
+
   console.log(data);
   $( '#title').text( data.title );
   $( '#description').text( data.description );
@@ -62,6 +63,7 @@ function createSolution( data ) {
 
   $( '#fileContentDisplayer').text( data.files[0].content );
   highlight();
+  $( '#backBtn' ).attr( "href", `/solutions/${data.problem}` );
 }
 
 function sendComment() {
@@ -89,7 +91,8 @@ function addComment( data ) {
 
 /** generates buttons and tools for editing a solution */
 function allowEdit(){
-  
+ 
+
   const saveBtn = document.createElement( 'button' );
   saveBtn.className = 'btn-primary';
   saveBtn.innerText = 'Save';
@@ -107,7 +110,6 @@ function allowEdit(){
   addFileBtn.className = 'btn-primary';
   addFileBtn.innerText = 'Add File';
   addFileBtn.onclick = () => {uploadFileTobrowser();}
-
   $( '#save' ).append( saveBtn );
   $( '#file' ).append( fileUpload );
   $( '#file' ).append( addFileBtn );

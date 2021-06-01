@@ -13,9 +13,14 @@ body{
     font-family:'Courier New', Courier, monospace;
 }
 
-.ul {
+li {
     list-style-type: none;
-    
+    margin-left: 1vh;
+    transition: 0.4s;
+}
+
+li:hover{
+    background-color: rgb(49, 50, 51);
 }
 
 .files{

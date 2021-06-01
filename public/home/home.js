@@ -38,8 +38,12 @@ function createHTML( data ) {
           <a href="/solution/${element._id}"> <img  src="${element.image}" class="card-img-top"> </a>
           <div class="card-body">
             <h5 class="card-title">${element.title}</h5>
-            <p class="card-tex">${element.description}</p>
-            <p class="card-text">${element.techUsed} </p>
+            <p class="card-text" style="font-weight: bold;">Description</p>
+            <p class="card-text">${element.description}</p>
+            <p class="card-text" style="font-weight: bold;">Solution By</p>
+            <p class="card-text">${element.name} </p>
+            <p class="card-text" style="font-weight: bold;">Tech Used</p>
+            <p class="card-text">${element.tech} </p>
             <a href="/solution/${element._id}" class="btn btn-primary mb-3">See Solution</a>
           </div>
         </div>

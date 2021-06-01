@@ -68,7 +68,7 @@ function createHTML( data ) {
                 <h5 class="card-title" style="font-weight: bold;">${element.title}</h5>
                 <p class="card-text" style="font-weight: bold;">Description</p>
                 <p class="card-text">${element.description}</p>
-                <p class="card-text" style="font-weight: bold;">Solution By</p>
+                <p class="card-text" style="font-weight: bold;">Problem By</p>
                 <p class="card-text">${element.name} </p>
                 <p class="card-text" style="font-weight: bold;">Tech Used</p>
                 <p class="card-text">${element.tech} </p>
