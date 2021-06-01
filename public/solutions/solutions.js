@@ -1,8 +1,9 @@
 
 
 
-$(document).ready( () => {
+$( document ).ready( () => {
     getElements();
+    createProblemTitle()
 });
 
 async function getElements() {
@@ -10,18 +11,9 @@ async function getElements() {
 
     const url = '/api/solutions/getSolutionsByProblem?';
     params = { id : $( '#problem-id' ).data( 'problem-id' ) };
-    
-    console.log(url + new  URLSearchParams( params ) );
-
-    const response = await fetch( url + new  URLSearchParams( params )  );    
-    console.log(response)
+    const response = await fetch( url + new  URLSearchParams( params )  );   
     const result = await response.json();
-
-    console.log(result)
-
-    await new Promise( (resolve, reject) =>{
-      resolve( createHTML( result ) );
-    }, ( error ) => { reject( error ); } );
+    createHTML( result );
 
   } catch ( error ) {
       console.log( error );
@@ -61,8 +53,7 @@ function uploadSolution() {
 }
 
 function createHTML( data ) {
-  console.log(data);
-  for (let index = 0; index < data.length; index++) {
+  for ( let index = 0; index < data.length; index++ ) {
     const element = data[index];
     
     const item = `
@@ -83,4 +74,14 @@ function createHTML( data ) {
     $( '#solution-displayer' ).append( $( item ) ); 
   }
 }
+
+async function createProblemTitle(){
+  const url = '/api/problem/get/' + $( '#problem-id' ).data( 'problem-id' );
+  const response = await fetch( url );    
+  const result = await response.json();
+  $( '#problem-title' ).text( "Problem for: " + result.title );
+  $( '#problem-description' ).text( result.description );
+
+}
+                
 

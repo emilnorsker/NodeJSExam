@@ -1,5 +1,6 @@
 const router = require( 'express' ).Router();
 const db = require( '../models/mongoDB.js' );
+const { ObjectId } = require('bson');
 const collection = 'problems';
 
 let header = undefined;
@@ -21,22 +22,26 @@ router.post( '/api/problem/add', ( request , response ) => {
     );
 });
 
+router.get( '/api/problem/get/:id', async ( request, response ) => { 
+   
+    const problem = await db.getDB().collection( collection ).findOne( {  _id : ObjectId( request.params.id )  } );
+        response.send( problem );
+});
 
 router.post( '/upload/problem/', async (request, response) => {
     console.log( request.body );
     const check = await db.getDB().collection( collection ).find( request.body.problem ).toArray().length
     if ( check > 0 ){
-         response.status(500).send("Error: This problem already exists, change parameters" ); 
+         response.status( 500 ).send( "Error: This problem already exists, change parameters" ); 
     }
     await db.getDB().collection( collection ).insertOne( request.body.problem );
     const problem = await db.getDB().collection( collection ).findOne( request.body.problem );
-    console.log(problem);
-    response.send("/solutions/" + problem._id);
+    response.send( "/solutions/" + problem._id );
 });
 
-router.get("/api/problems/search", async ( request , response ) => {
+router.get( "/api/problems/search", async ( request , response ) => {
         try {
-           const problems = await db.getDB().collection(collection).find({
+           const problems = await db.getDB().collection( collection ).find({
             "$text": {
               "$search": request.query.text
             } } ).toArray();
@@ -58,7 +63,7 @@ router.get("/api/problems/orderBy", async ( request , response ) => {
            limit = Number( request.query.limit );
        }
 
-       const solutions = await db.getDB().collection(collection).find({}).sort( query ).limit(limit).toArray();
+       const solutions = await db.getDB().collection( collection ).find({}).sort( query ).limit( limit ).toArray();
        response.send( solutions );
    } catch ( error ) {
        console.log( error );

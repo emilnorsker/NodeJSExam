@@ -11,7 +11,7 @@ let header = undefined;
 let body = undefined;
 let footer = undefined;
 
-const init = ( _footer, _body, _header, _io) => {
+const init = ( _footer, _body, _header, _io ) => {
     footer = _footer;
     body = _body;
     header = _header;
@@ -20,22 +20,20 @@ const init = ( _footer, _body, _header, _io) => {
 }
 
 const defineSocketBehavior = () => {
-    io.on("connection", (socket) => {
-        socket.on("comment", async (data) => {
-            data.uploadTime = moment(data.time).utcOffset(2).format('HH:mm');
-            console.log(data.uploadTime);
+    io.on("connection", ( socket ) => {
+        socket.on("comment", async ( data ) => {
+            data.uploadTime = moment( data.time ).utcOffset( 2 ).format( 'HH:mm' );
             const endpoint  = "comment" + data.solutionID;
             
             io.emit(endpoint, { "content" : data.comment, name: 'anon', "uploadTime": data.uploadTime });
-            db.getDB().collection(collection).updateOne( {_id : ObjectId(data.solutionID) }, {$push: { "comments": { 
+            db.getDB().collection( collection ).updateOne( { _id : ObjectId( data.solutionID ) }, { $push: { "comments": { 
                 "content": data.comment, 
                 "name": "anon", 
                 "uploadTime": data.uploadTime }
            }});
 
-        socket.on("disconnect", () => {
-        console.log("A socket disconnect");
-            console.log("A socket disconnect");
+        socket.on( "disconnect", () => {
+        console.log( "A socket disconnected" );
         });
     } ) } );
 }
@@ -50,8 +48,8 @@ router.post( '/api/solution/add', ( request , response ) => {
 /** update */
 router.post( '/api/update/solution/:id/', ( request , response ) => {
     try {
-    db.getDB().collection( collection ).updateOne( { _id : ObjectId(request.params.id)},  
-        {$set : request.body.solution}
+    db.getDB().collection( collection ).updateOne( { _id : ObjectId( request.params.id )},  
+        { $set : request.body.solution }
     );
     response.send( 'Accepted' );
     } catch ( error ) {
@@ -63,7 +61,7 @@ router.post( '/api/update/solution/:id/', ( request , response ) => {
 /** gets the solution object from the db */
 router.get("/api/solution/get/:id", async ( request , response ) => {
     try {
-        const solutionObject = await db.getDB().collection(collection).findOne( {  _id : ObjectId(request.params.id)  } );
+        const solutionObject = await db.getDB().collection( collection ).findOne( {  _id : ObjectId( request.params.id )  } );
         response.send( solutionObject );
         
     } catch ( error ) {
@@ -82,7 +80,7 @@ router.get("/api/solution/orderBy", async ( request , response ) => {
             limit = Number( request.query.limit );
         }
 
-        const solutions = await db.getDB().collection(collection).find({}).sort( query ).limit(limit).toArray();
+        const solutions = await db.getDB().collection( collection ).find({}).sort( query ).limit( limit ).toArray();
         response.send( solutions );
     } catch ( error ) {
         console.log( error );
@@ -90,14 +88,14 @@ router.get("/api/solution/orderBy", async ( request , response ) => {
     }
 });
 
-router.post( '/upload/solution/', async (request, response) => {
+router.post( '/upload/solution/', async ( request, response ) => {
     const check = await db.getDB().collection( collection ).find( request.body.solution ).toArray().length
     if ( check > 0 ){
-         response.status(500).send("Error: This solution already exists, change parameters" ); 
+         response.status( 500 ).send( "Error: This solution already exists, change parameters" ); 
     }
     await db.getDB().collection( collection ).insertOne( request.body.solution );
     const solution = await db.getDB().collection( collection ).findOne( request.body.solution );
-    response.send("/solution/" + solution._id);
+    response.send( "/solution/" + solution._id );
 });
 
 router.get( '/solution/:id', ( request, response ) => { // todo sanitise input

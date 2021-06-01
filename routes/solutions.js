@@ -14,8 +14,7 @@ const init = ( _footer, _body, _header ) => {
 
 router.get("/api/solutions/getSolutionsByProblem", async ( request , response ) => {
     try {
-        const solutions = await db.getDB().collection(collection).find( { problem : request.query.id.toString() } ).toArray();
-        console.log(solutions)
+        const solutions = await db.getDB().collection( collection ).find( { problem : request.query.id.toString() } ).toArray();
         response.send( solutions );
     } catch ( error ) {
         console.log( error );

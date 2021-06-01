@@ -11,18 +11,9 @@ async function createSolutions() {
 
     const url = '/api/problems/orderBy?';
     params = { value : 'title' };
-    
-    console.log(url + new  URLSearchParams( params ) );
-
     const response = await fetch( url + new  URLSearchParams( params )  );    
-    console.log(response)
     const result = await response.json();
-
-    console.log(result)
-
-    await new Promise( (resolve, reject) =>{
-      resolve( createHTML( result ) );
-    }, ( error ) => { reject( error ); } );
+    createHTML( result )
 
   } catch ( error ) {
       console.log( error );
@@ -35,7 +26,7 @@ function uploadProblem() {
     name : $( '#name' ).val(),
     title : $( '#title' ).val(),
     description : $( '#description' ).val(),
-    image : $( '#image').val(), /*Array.from( $( '#image' ).prop( 'files' ) )[0]*/
+    image : $( '#image' ).val(),
     tech : $( '#tech' ).val()
   }  
   
@@ -83,16 +74,16 @@ function createHTML( data ) {
 
 function search() {
   var input, filter, card, cardTitle, i, h5, txtValue;
-  input = document.getElementById('search');
+  input = document.getElementById( 'search' );
   filter = input.value.toUpperCase();
-  card = document.getElementById('card')
-  cardTitle = card.getElementsByClassName('card-title');
+  card = document.getElementById( 'card' )
+  cardTitle = card.getElementsByClassName( 'card-title' );
 
-  for (i = 0; i < h5.length; i++){
-    h5 = cardTitle[i].getElementsByTagName('h5')[0];
+  for ( i = 0; i < h5.length; i++ ){
+    h5 = cardTitle[i].getElementsByTagName( 'h5' )[0];
     txtValue = h5.textContent || h5.innerText;
 
-    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+    if ( txtValue.toUpperCase().indexOf( filter ) > -1) {
       cardTitle[i].style.display = "";
     } else {
       cardTitle[i].style.display = "none";

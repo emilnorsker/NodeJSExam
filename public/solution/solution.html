@@ -27,13 +27,16 @@
                     </div>
                 </div>
 
-                <div id="file" class="col-3">
+                <div class="col-3">
+                    
                     <h5 class="marg">File List</h5>
                     <div class="files" id="fileList" style="width: 100%;"></div>
+                    <a id="file" hidden></a>
                 </div>
                 
                 <div id="save" class="col-6">
                     <h5 style="float: left;">Content Displayer</h5>
+                    <button class="btn btn-danger mb-1" style="float: right;" id="editBtn" onclick="allowEdit()">Edit</button>
                     <a class="btn btn-primary mb-1" style="float: right;" id="backBtn">Back to Solutions</a>
                     <div class="codeBox" id="fileContentDisplayer" style="width: 100%;">
                     </div>
